@@ -22,7 +22,7 @@ const Results = () => (
     <section id="result" className={layout.section}>
         <div className={layout.sectionInfo}>
             <h1 className="flex-1 font-poppins font-semibold ss:text-[50px] text-[5px] text-white ss:leading-[100.8px] leading-[75px]">
-                <span className="text-gradient">Completed Match</span>{" "}
+                <span className="text-gradient">Concluded Matches</span>{" "}
             </h1>
         </div>
         <div className={`${layout.sectionImg} flex-col`}>
