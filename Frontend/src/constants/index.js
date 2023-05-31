@@ -6,31 +6,63 @@ export const navLinks = [
     title: "Home",
   },
   {
-    id: "features",
+    id: "schedule",
     title: "Schedule",
   },
   {
-    id: "product",
-    title: "Teams",
+    id: "result",
+    title: "Results",
+  },
+  {
+    id: "login",
+    title: "Login",
   },
 ];
 
-export const features = [
+export const schedule = [
   {
-    id: "feature-1",
+    id: "schedule-1",
     icon: star,
     title: "MPL ID Season 66",
     content:
     "Alter Ego vs Bigetron",
   },
   {
-    id: "feature-2",
+    id: "schedule-2",
     icon: star,
-    title: "100% Secured",
+    title: "MPL ID Season 67",
+    content:
+    "Alter Ego vs Bigetron",
   },
   {
-    id: "feature-3",
+    id: "schedule-3",
     icon: star,
-    title: "Balance Transfer",
+    title: "MPL ID Season 68",
+    content:
+    "Alter Ego vs Bigetron",
+  },
+];
+
+export const result = [
+  {
+    id: "result-1",
+    icon: star,
+    title: "Alter Ego vs Bigetron",
+    content:
+    "2 - 0",
+  },
+  {
+    id: "result-2",
+    icon: star,
+    title: "Alter Ego vs Bigetron",
+    content:
+    "2 - 0",
+  },
+  {
+    id: "result-3",
+    icon: star,
+    title: "Alter Ego vs Bigetron",
+    content:
+    "2 - 0",
   },
 ];
