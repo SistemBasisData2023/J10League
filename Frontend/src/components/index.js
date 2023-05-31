@@ -1,11 +1,15 @@
 import Navbar from "./Navbar";
-import Business from "./Business";
+import Schedule from "./Schedule";
+import Results from "./Results";
 import Footer from "./Footer";
 import Hero from "./Hero";
+import Login from "./Login";
 
 export {
   Navbar,
-  Business,
+  Schedule,
+  Results,
   Footer,
   Hero,
+  Login,
 };

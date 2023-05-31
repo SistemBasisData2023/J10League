@@ -19,7 +19,9 @@ export const features = [
   {
     id: "feature-1",
     icon: star,
-    title: "Alter Ego Vs Boom Esports",
+    title: "MPL ID Season 66",
+    content:
+    "Alter Ego vs Bigetron",
   },
   {
     id: "feature-2",

@@ -11,20 +11,19 @@ const Hero = () => {
             <span className="text-gradient">Mobile Legends</span>{" "}
           </h1>
         </div>
-
         <h1 className="font-poppins font-semibold ss:text-[68px] text-[52px] text-white ss:leading-[100.8px] leading-[75px] w-full">
           Website.
         </h1>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
           <h1>Created By:</h1>
-          <h1>Arka Brian Dewara</h1>
-          <h1>Muhammad Fathan Muhandis</h1>
-          <h1>Jeffri</h1>
+          <h2>Arka Brian Dewara</h2>
+          <h3>Muhammad Fathan Muhandis</h3>
+          <h4>Jeffri</h4>
         </p>
       </div>
 
       <div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
-        <img src={heroml} alt="billing" className="w-[100%] h-[100%] relative z-[5]" />
+        <img src={heroml} alt="pageicon" className="w-[100%] h-[100%] relative z-[5]" />
 
         {/* gradient start */}
         <div className="absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient" />
