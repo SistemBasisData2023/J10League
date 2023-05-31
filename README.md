@@ -9,4 +9,4 @@
 + Jeffri - 2106705070
 
 ## Dekripsi
-J10 League merupakan sebuah website yang berguna untuk pemantauan turnamen game yaitu Mobile Legends. Di dalamnya akan terdapat jadwal bermain dari tim-tim yang akan bertanding, lalu terdapat recap hasil pertandingan tim yang telah bertanding yang diisi dengan hasil pemenang pertandingan, profil tim beserta anggotanya, hero yang dipakai, durasi game, dan lain-lain. Selain itu, akan terdapat fitur untuk login admin agar dapat mengedit ataupun mengunggah data pada website.
+J10 League is a useful website for monitoring game tournaments, namely Mobile Legends. In it there will be a playing schedule of the teams that will compete, then there is a recap of the results of the matches of the teams that have competed which are filled with the results of the match winners, team profiles and their members, heroes used, game duration, and so on. In addition, there will be a feature for admin logins so they can edit or upload data on the website.
