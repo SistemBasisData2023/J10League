@@ -1,5 +1,6 @@
 import { schedule } from "../constants";
 import styles, { layout } from "../style";
+import { logo_mpl, logo_m4, logo_pialapresiden, logo_mdl } from "../assets";
 
 const FeatureCard = ({ icon, title, content, index }) => (
   <div className={`flex flex-row p-6 rounded-[20px] ${index !== schedule.length - 1 ? "mb-6" : "mb-0"} schedule-card`}>
@@ -15,20 +16,134 @@ const FeatureCard = ({ icon, title, content, index }) => (
       </p>
     </div>
   </div>
-  
+
 );
 
-const Schedule = () =>  (
+const Schedule = () => (
   <section id="schedule" className={layout.section}>
     <div className={layout.sectionInfo}>
       <h1 className="flex-1 font-poppins font-semibold ss:text-[50px] text-[5px] text-white ss:leading-[100.8px] leading-[75px]">
-      <span className="text-gradient">Upcoming Matches</span>{" "}
+        <span className="text-gradient">Upcoming Matches</span>{" "}
       </h1>
     </div>
-    <div className={`${layout.sectionImg} flex-col`}>
-      {schedule.map((schedule, index) => (
-        <FeatureCard key={schedule.id} {...schedule} index={index} />
-      ))}
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Teams</th>
+            <th>Match Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="flex items-center space-x-3">
+                <div class="avatar">
+                  <div class="mask mask-squircle w-12 h-12">
+                    <img src={ logo_mpl } alt="page-icon" />
+                  </div>
+                </div>
+                <div>
+                  <div class="font-bold">MPL ID Season 11</div>
+                  <div class="text-sm opacity-50">Indonesia</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              EVOS Legend vs Alter Ego
+              <br />
+              <span class="badge badge-ghost badge-sm">BEST OF 3</span>
+            </td>
+            <td>21 April 2022</td>
+            <th>
+              <button class="btn btn-ghost btn-xs">details</button>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <div class="flex items-center space-x-3">
+                <div class="avatar">
+                  <div class="mask mask-squircle w-12 h-12">
+                    <img src={ logo_m4 } alt="page-icon" />
+                  </div>
+                </div>
+                <div>
+                  <div class="font-bold">M4</div>
+                  <div class="text-sm opacity-50">International</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              ECHO vs Blacklist International
+              <br />
+              <span class="badge badge-ghost badge-sm">BEST OF 3</span>
+            </td>
+            <td>12 November 2022</td>
+            <th>
+              <button class="btn btn-ghost btn-xs">details</button>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <div class="flex items-center space-x-3">
+                <div class="avatar">
+                  <div class="mask mask-squircle w-12 h-12">
+                    <img src={ logo_mdl } alt="page-icon" />
+                  </div>
+                </div>
+                <div>
+                  <div class="font-bold">MDL ID Season 7</div>
+                  <div class="text-sm opacity-50">Indonesia</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              Bigetron vs Rex Regum Qeon
+              <br />
+              <span class="badge badge-ghost badge-sm">BEST OF 3</span>
+            </td>
+            <td>10 Mei 2022</td>
+            <th>
+              <button class="btn btn-ghost btn-xs">details</button>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <div class="flex items-center space-x-3">
+                <div class="avatar">
+                  <div class="mask mask-squircle w-12 h-12">
+                    <img src={ logo_pialapresiden } alt="page-icon" />
+                  </div>
+                </div>
+                <div>
+                  <div class="font-bold">Piala Presiden 2022</div>
+                  <div class="text-sm opacity-50">Indonesia</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              GPX vs UI Nera
+              <br />
+              <span class="badge badge-ghost badge-sm">BEST OF 3</span>
+            </td>
+            <td>01 Januari 2022</td>
+            <th>
+              <button class="btn btn-ghost btn-xs">details</button>
+            </th>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Name</th>
+            <th>Teams</th>
+            <th>Match Date</th>
+            <th></th>
+          </tr>
+        </tfoot>
+
+      </table>
     </div>
   </section>
 );

@@ -1,5 +1,6 @@
 import { result } from "../constants";
 import styles, { layout } from "../style";
+import { logo_mpl, logo_m4, logo_pialapresiden, logo_mdl } from "../assets";
 
 const FeatureCard = ({ icon, title, content, index }) => (
     <div className={`flex flex-row p-6 rounded-[20px] ${index !== result.length - 1 ? "mb-6" : "mb-0"} result-card`}>
@@ -25,10 +26,124 @@ const Results = () => (
                 <span className="text-gradient">Concluded Matches</span>{" "}
             </h1>
         </div>
-        <div className={`${layout.sectionImg} flex-col`}>
-            {result.map((result, index) => (
-                <FeatureCard key={result.id} {...result} index={index} />
-            ))}
+        <div class="overflow-x-auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Winner</th>
+                        <th>Match Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="flex items-center space-x-3">
+                                <div class="avatar">
+                                    <div class="mask mask-squircle w-12 h-12">
+                                        <img src={logo_mpl} alt="page-icon" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-bold">MPL ID Season 11</div>
+                                    <div class="text-sm opacity-50">Indonesia</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            EVOS Legend
+                            <br />
+                            <span class="badge badge-ghost badge-sm">EVOS Legend vs Alter Ego</span>
+                        </td>
+                        <td>21 April 2022</td>
+                        <th>
+                            <button class="btn btn-ghost btn-xs">details</button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="flex items-center space-x-3">
+                                <div class="avatar">
+                                    <div class="mask mask-squircle w-12 h-12">
+                                        <img src={logo_m4} alt="page-icon" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-bold">M4</div>
+                                    <div class="text-sm opacity-50">International</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            Blacklist International
+                            <br />
+                            <span class="badge badge-ghost badge-sm">ECHO vs Blacklist International</span>
+                        </td>
+                        <td>12 November 2022</td>
+                        <th>
+                            <button class="btn btn-ghost btn-xs">details</button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="flex items-center space-x-3">
+                                <div class="avatar">
+                                    <div class="mask mask-squircle w-12 h-12">
+                                        <img src={logo_mdl} alt="page-icon" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-bold">MDL ID Season 7</div>
+                                    <div class="text-sm opacity-50">Indonesia</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            Rex Regum Qeon
+                            <br />
+                            <span class="badge badge-ghost badge-sm">Bigetron vs Rex Regum Qeon</span>
+                        </td>
+                        <td>10 Mei 2022</td>
+                        <th>
+                            <button class="btn btn-ghost btn-xs">details</button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="flex items-center space-x-3">
+                                <div class="avatar">
+                                    <div class="mask mask-squircle w-12 h-12">
+                                        <img src={logo_pialapresiden} alt="page-icon" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-bold">Piala Presiden 2022</div>
+                                    <div class="text-sm opacity-50">Indonesia</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            UI Nera
+                            <br />
+                            <span class="badge badge-ghost badge-sm">GPX vs UI Nera</span>
+                        </td>
+                        <td>01 Januari 2022</td>
+                        <th>
+                            <button class="btn btn-ghost btn-xs">details</button>
+                        </th>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Winner</th>
+                        <th>Match Date</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+
+            </table>
         </div>
     </section>
 );
