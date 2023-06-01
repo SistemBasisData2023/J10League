@@ -35,7 +35,7 @@ const Results = () => (
                     <tr>
                         <th>Name</th>
                         <th>Winner</th>
-                        <th>Match Date</th>
+                        <th>Score</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -59,7 +59,7 @@ const Results = () => (
                             <br />
                             <span class="badge badge-ghost badge-sm">EVOS Legend vs Alter Ego</span>
                         </td>
-                        <td>21 April 2022</td>
+                        <td>2 - 1</td>
                         <th>
                             <button class="btn btn-ghost btn-xs">details</button>
                         </th>
@@ -83,7 +83,7 @@ const Results = () => (
                             <br />
                             <span class="badge badge-ghost badge-sm">ECHO vs Blacklist International</span>
                         </td>
-                        <td>12 November 2022</td>
+                        <td>0 - 2</td>
                         <th>
                             <button class="btn btn-ghost btn-xs">details</button>
                         </th>
@@ -107,7 +107,7 @@ const Results = () => (
                             <br />
                             <span class="badge badge-ghost badge-sm">Bigetron vs Rex Regum Qeon</span>
                         </td>
-                        <td>10 Mei 2022</td>
+                        <td>1 - 2</td>
                         <th>
                             <button class="btn btn-ghost btn-xs">details</button>
                         </th>
@@ -131,22 +131,73 @@ const Results = () => (
                             <br />
                             <span class="badge badge-ghost badge-sm">GPX vs UI Nera</span>
                         </td>
-                        <td>01 Januari 2022</td>
+                        <td>1 - 3</td>
                         <th>
                             <button class="btn btn-ghost btn-xs">details</button>
                         </th>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Winner</th>
-                        <th>Match Date</th>
-                        <th></th>
-                    </tr>
-                </tfoot>
-
             </table>
+            <div class="collapse">
+                <input type="checkbox" />
+                <div class="collapse-title text-xl font-medium">
+                    Click to see more
+                </div>
+                <div class="collapse-content">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <div class="mask mask-squircle w-12 h-12">
+                                                <img src={logo_mpl} alt="page-icon" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold">MPL ID Season 11</div>
+                                            <div class="text-sm opacity-50">Indonesia</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    UI Esports
+                                    <br />
+                                    <span class="badge badge-ghost badge-sm">ONIC Esports vs UI Esports</span>
+                                </td>
+                                <td>3 - 4</td>
+                                <th>
+                                    <button class="btn btn-ghost btn-xs">details</button>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="avatar">
+                                            <div class="mask mask-squircle w-12 h-12">
+                                                <img src={logo_m4} alt="page-icon" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold">M4</div>
+                                            <div class="text-sm opacity-50">International</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    The Valley
+                                    <br />
+                                    <span class="badge badge-ghost badge-sm">The Valley vs Falcon Esports</span>
+                                </td>
+                                <td>2 - 1</td>
+                                <th>
+                                    <button class="btn btn-ghost btn-xs">details</button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
 );

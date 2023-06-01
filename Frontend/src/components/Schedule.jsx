@@ -137,16 +137,67 @@ const Schedule = () => (
             </th>
           </tr>
         </tbody>
-        <tfoot>
-          <tr>
-            <th>Name</th>
-            <th>Teams</th>
-            <th>Match Date</th>
-            <th></th>
-          </tr>
-        </tfoot>
-
       </table>
+      <div class="collapse">
+        <input type="checkbox" />
+        <div class="collapse-title text-xl font-medium">
+          Click to see more
+        </div>
+        <div class="collapse-content">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <div class="flex items-center space-x-3">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-12 h-12">
+                        <img src={logo_mpl} alt="page-icon" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="font-bold">MPL ID Season 11</div>
+                      <div class="text-sm opacity-50">Indonesia</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  ONIC Esports vs UI Esports
+                  <br />
+                  <span class="badge badge-ghost badge-sm">GRAND FINAL - BEST OF 7</span>
+                </td>
+                <td>17 Agustus 2022</td>
+                <th>
+                  <button class="btn btn-ghost btn-xs">details</button>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <div class="flex items-center space-x-3">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-12 h-12">
+                        <img src={logo_m4} alt="page-icon" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="font-bold">M4</div>
+                      <div class="text-sm opacity-50">International</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  The Valley vs Falcon Esports
+                  <br />
+                  <span class="badge badge-ghost badge-sm">PLAYOFFS - BEST OF 3</span>
+                </td>
+                <td>22 Desember 2022</td>
+                <th>
+                  <button class="btn btn-ghost btn-xs">details</button>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </section>
 );
