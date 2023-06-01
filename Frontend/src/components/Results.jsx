@@ -13,30 +13,34 @@ const FeatureCard = ({ icon, title, content, winners, score, match_details, inde
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle w-12 h-12">
-                                    <img src={icon} alt="page-icon" />
+                {result.map((data) => {
+                    return (
+                        <tr>
+                            <td>
+                                <div class="flex items-center space-x-3">
+                                    <div class="avatar">
+                                        <div class="mask mask-squircle w-12 h-12">
+                                            <img src={data.icon} alt="page-icon" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold"> {data.title} </div>
+                                        <div class="text-sm opacity-50"> {data.content} </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="font-bold"> {title} </div>
-                                <div class="text-sm opacity-50"> {content} </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        {winners}
-                        <br />
-                        <span class="badge badge-ghost badge-sm"> {match_details} </span>
-                    </td>
-                    <td> {score} </td>
-                    <th>
-                        <button class="btn btn-ghost btn-xs">details</button>
-                    </th>
-                </tr>
+                            </td>
+                            <td>
+                                {data.winners}
+                                <br />
+                                <span class="badge badge-ghost badge-sm"> {data.match_details} </span>
+                            </td>
+                            <td> {data.score} </td>
+                            <th>
+                                <button class="btn btn-ghost btn-xs">details</button>
+                            </th>
+                        </tr>
+                    );
+                })}
             </tbody>
         </table>
     </div>
@@ -54,9 +58,7 @@ const Result = () => (
         </div>
 
         <div className={`${layout.sectionImg} flex-col`}>
-            {result.map((result, index) => (
-                <FeatureCard key={result.id} {...result} index={index} />
-            ))}
+            <FeatureCard />
         </div>
     </section>
 );

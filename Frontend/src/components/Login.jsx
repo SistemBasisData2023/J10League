@@ -16,7 +16,7 @@ const Login = () => {
     };
 
     return (
-        <section id="login" className={`flex md:flex-row flex-col ${styles.paddingY}`}>
+        <section id="login" className={`gap-20 flex md:flex-row flex-col ${styles.paddingY}`}>
             <div className={`flex-1 flex ${styles.flexStart} md:my-0 my-10 relative`}>
                 <img src={heroml2} alt="login-icon" className="w-[100%] h-[100%] relative z-[5]" />
 

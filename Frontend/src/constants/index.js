@@ -34,7 +34,7 @@ export const schedule = [
     icon: logo_mpl,
     title: "MPL ID Season 11",
     content: "Indonesia",
-    teams: "EVOS Legend",
+    teams: "EVOS Legend vs Alter Ego",
     date: "21 April 2022",
     match_details : "GROUP STAGE - BEST OF 3",
   },
@@ -57,16 +57,16 @@ export const result = [
     content: "International",
     winners: "Blacklist International",
     score: "0 - 2",
-    match_details : "LOWER FINAL - BEST OF 3",
+    match_details : "ECHO vs Blacklist International",
   },
   {
     id: "2",
     icon: logo_mpl,
     title: "MPL ID Season 11",
     content: "Indonesia",
-    teams: "EVOS Legend",
-    date: "2 - 1",
-    match_details : "GROUP STAGE - BEST OF 3",
+    winners: "EVOS Legend",
+    score: "2 - 1",
+    match_details : "EVOS Legend vs Alter Ego",
   },
   {
     id: "3",
@@ -75,7 +75,7 @@ export const result = [
     content: "Indonesia",
     winners: "Rex Regum Qeon",
     score: "1 - 2",
-    match_details : "UPPER FINAL - BEST OF 3",
+    match_details : "Bigetron vs Rex Regum Qeon",
   },
 ];
 
