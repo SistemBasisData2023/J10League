@@ -1,4 +1,4 @@
-import { send, shield, star  } from "../assets";
+import { send, shield, star, logo_m4, logo_mdl, logo_pialapresiden, logo_mpl  } from "../assets";
 
 export const navLinks = [
   {
@@ -21,48 +21,90 @@ export const navLinks = [
 
 export const schedule = [
   {
-    id: "schedule-1",
-    icon: star,
-    title: "MPL ID Season 66",
-    content:
-    "Alter Ego vs Bigetron",
+    id: "1",
+    icon: logo_m4,
+    title: "M4",
+    content: "International",
+    teams: "ECHO vs Blacklist International",
+    date: "12 November 2022",
+    match_details : "LOWER FINAL - BEST OF 3",
   },
   {
-    id: "schedule-2",
-    icon: star,
-    title: "MPL ID Season 67",
-    content:
-    "Alter Ego vs Bigetron",
+    id: "2",
+    icon: logo_mpl,
+    title: "MPL ID Season 11",
+    content: "Indonesia",
+    teams: "EVOS Legend",
+    date: "21 April 2022",
+    match_details : "GROUP STAGE - BEST OF 3",
   },
   {
-    id: "schedule-3",
-    icon: star,
-    title: "MPL ID Season 68",
-    content:
-    "Alter Ego vs Bigetron",
+    id: "3",
+    icon: logo_mdl,
+    title: "MDL ID Season 7",
+    content: "Indonesia",
+    teams: "Bigetron vs Rex Regum Qeon",
+    date: "10 Mei 2022",
+    match_details : "UPPER FINAL - BEST OF 3",
   },
 ];
 
 export const result = [
   {
-    id: "result-1",
-    icon: star,
-    title: "Alter Ego vs Bigetron",
-    content:
-    "2 - 0",
+    id: "1",
+    icon: logo_m4,
+    title: "M4",
+    content: "International",
+    winners: "Blacklist International",
+    score: "0 - 2",
+    match_details : "LOWER FINAL - BEST OF 3",
   },
   {
-    id: "result-2",
-    icon: star,
-    title: "Alter Ego vs Bigetron",
-    content:
-    "2 - 0",
+    id: "2",
+    icon: logo_mpl,
+    title: "MPL ID Season 11",
+    content: "Indonesia",
+    teams: "EVOS Legend",
+    date: "2 - 1",
+    match_details : "GROUP STAGE - BEST OF 3",
   },
   {
-    id: "result-3",
-    icon: star,
-    title: "Alter Ego vs Bigetron",
-    content:
-    "2 - 0",
+    id: "3",
+    icon: logo_mdl,
+    title: "MDL ID Season 7",
+    content: "Indonesia",
+    winners: "Rex Regum Qeon",
+    score: "1 - 2",
+    match_details : "UPPER FINAL - BEST OF 3",
+  },
+];
+
+export const features = [
+  {
+    id: "1",
+    icon: logo_m4,
+    title: "M4",
+    content: "International",
+    teams: "ECHO vs Blacklist International",
+    date: "12 November 2022",
+    match_details : "LOWER FINAL - BEST OF 3",
+  },
+  {
+    id: "2",
+    icon: logo_mpl,
+    title: "MPL ID Season 11",
+    content: "Indonesia",
+    teams: "EVOS Legend vs Alter Ego",
+    date: "21 April 2022",
+    match_details : "GROUP STAGE - BEST OF 3",
+  },
+  {
+    id: "3",
+    icon: logo_mdl,
+    title: "MDL ID Season 7",
+    content: "Indonesia",
+    teams: "Bigetron vs Rex Regum Qeon",
+    date: "10 Mei 2022",
+    match_details : "UPPER FINAL - BEST OF 3",
   },
 ];
