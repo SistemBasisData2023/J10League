@@ -14,14 +14,10 @@ const Login = () => {
         console.log('Password:', password);
         // You can add your own logic here to authenticate the user
     };
-
-// //<a href="/login" className="font-Montserrat ml-1 mr-7 text-info hover:underline">
-// Log In
-// </a>
-
+    
     return (
-        <section id="login" className={`gap-20 flex md:flex-row flex-col ${styles.paddingY}`}>
-            <div className={`flex-1 flex ${styles.flexStart} md:my-0 my-10 relative`}>
+        <section id="login" className={`gap-20 flex md:flex-row flex-col`}>
+            <div className={`flex-1 flex ${styles.marginX} md:my-0 my-10 relative`}>
                 <img src={heroml2} alt="login-icon" className="w-[100%] h-[100%] relative z-[5]" />
 
                 {/* gradient start */}
@@ -33,7 +29,7 @@ const Login = () => {
             <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
                 <div className="flex flex-row justify-between items-center w-full">
                     <h1 className="flex-1 font-poppins font-semibold ss:text-[55px] text-[45px] text-white ss:leading-[100.8px] leading-[75px]">
-                        <span className="text-gradient">Login</span>{" "}
+                        <span className="text-gradient">Login</span>
                     </h1>
                 </div>
 
@@ -46,7 +42,7 @@ const Login = () => {
                         <label htmlFor="password" className="block mb-2">Password</label>
                         <input type="password" id="password" name="password" className="w-full px-3 py-2 border rounded-md" required />
                     </div>
-                    <button type="submit" className="font-poppins font-medium text-[18px] text-primary bg-blue-gradient px-4 py-2 rounded-md">Login</button>
+                    <button type="submit" className="gap-x-10 font-poppins font-medium text-[18px] text-primary bg-blue-gradient px-4 py-2 rounded-md mt-2">Login</button>
                 </form>
             </div>
         </section>

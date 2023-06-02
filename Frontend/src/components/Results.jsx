@@ -13,30 +13,30 @@ const FeatureCard = ({ icon, title, content, winners, score, match_details, inde
                 </tr>
             </thead>
             <tbody>
-                {result.map((data) => {
+                {result.map((data, index) => {
                     return (
-                        <tr>
+                        <tr key={index}>
                             <td>
-                                <div class="flex items-center space-x-3">
-                                    <div class="avatar">
-                                        <div class="mask mask-squircle w-12 h-12">
+                                <div className="flex items-center space-x-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
                                             <img src={data.icon} alt="page-icon" />
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="font-bold"> {data.title} </div>
-                                        <div class="text-sm opacity-50"> {data.content} </div>
+                                        <div className="font-bold"> {data.title} </div>
+                                        <div className="text-sm opacity-50"> {data.content} </div>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 {data.winners}
                                 <br />
-                                <span class="badge badge-ghost badge-sm"> {data.match_details} </span>
+                                <span className="badge badge-ghost badge-sm"> {data.match_details} </span>
                             </td>
                             <td> {data.score} </td>
                             <th>
-                                <button class="btn btn-ghost btn-xs">details</button>
+                                <button className="btn btn-ghost btn-xs">details</button>
                             </th>
                         </tr>
                     );

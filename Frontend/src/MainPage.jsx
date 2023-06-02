@@ -1,6 +1,5 @@
-import React from 'react'
 import style from "./style";
-import { Schedule, Results, Footer, Navbar, Hero, Login, Table } from "./components";
+import { Schedule, Results, Footer, Navbar, Hero } from "./components";
 
 const MainPage = () => {
     return (

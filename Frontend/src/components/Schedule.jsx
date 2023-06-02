@@ -13,30 +13,30 @@ const FeatureCard = ({ icon, title, content, teams, date, match_details, index }
         </tr>
       </thead>
       <tbody>
-        {schedule.map((data) => {
+        {schedule.map((data, index) => {
           return (
-            <tr>
+            <tr key={ index }>
               <td>
-                <div class="flex items-center space-x-3">
-                  <div class="avatar">
-                    <div class="mask mask-squircle w-12 h-12">
+                <div className="flex items-center space-x-3">
+                  <div className="avatar">
+                    <div className="mask mask-squircle w-12 h-12">
                       <img src={data.icon} alt="page-icon" />
                     </div>
                   </div>
                   <div>
-                    <div class="font-bold"> {data.title} </div>
-                    <div class="text-sm opacity-50"> {data.content} </div>
+                    <div className="font-bold"> {data.title} </div>
+                    <div className="text-sm opacity-50"> {data.content} </div>
                   </div>
                 </div>
               </td>
               <td>
                 {data.teams}
                 <br />
-                <span class="badge badge-ghost badge-sm"> {data.match_details} </span>
+                <span className="badge badge-ghost badge-sm"> {data.match_details} </span>
               </td>
               <td> {data.date} </td>
               <th>
-                <button class="btn btn-ghost btn-xs">details</button>
+                <button className="btn btn-ghost btn-xs">details</button>
               </th>
             </tr>
           );
@@ -56,7 +56,6 @@ const Schedule = () => (
         </h1>
       </div>
     </div>
-
     <div className={`${layout.sectionImg} flex-col`}>
         <FeatureCard/>
     </div>

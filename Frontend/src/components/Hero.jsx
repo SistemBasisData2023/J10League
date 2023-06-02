@@ -14,12 +14,12 @@ const Hero = () => {
         <h1 className="font-poppins font-semibold ss:text-[65px] text-[52px] text-white ss:leading-[100.8px] leading-[75px] w-full">
           Monitoring Website.
         </h1>
-        <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
+        <div className={`${styles.paragraph} max-w-[470px] mt-5`}>
           <h1>Created By:</h1>
           <h2>Arka Brian Dewara</h2>
           <h3>Muhammad Fathan Muhandis</h3>
           <h4>Jeffri</h4>
-        </p>
+        </div>
       </div>
 
       <div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
