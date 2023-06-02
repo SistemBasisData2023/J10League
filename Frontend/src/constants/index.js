@@ -2,15 +2,15 @@ import { send, shield, star, logo_m4, logo_mdl, logo_pialapresiden, logo_mpl  } 
 
 export const navLinks = [
   {
-    id: "home",
+    id: "#home",
     title: "Home",
   },
   {
-    id: "schedule",
+    id: "#schedule",
     title: "Schedule",
   },
   {
-    id: "result",
+    id: "#result",
     title: "Results",
   },
   {

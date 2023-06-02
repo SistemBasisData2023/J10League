@@ -15,6 +15,10 @@ const Login = () => {
         // You can add your own logic here to authenticate the user
     };
 
+// //<a href="/login" className="font-Montserrat ml-1 mr-7 text-info hover:underline">
+// Log In
+// </a>
+
     return (
         <section id="login" className={`gap-20 flex md:flex-row flex-col ${styles.paddingY}`}>
             <div className={`flex-1 flex ${styles.flexStart} md:my-0 my-10 relative`}>
