@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "../style";
-import { heroml3, heroml2 } from "../assets";
+import { heroml2 } from "../assets";
 
 const Login = () => {
     const handleLogin = (event) => {

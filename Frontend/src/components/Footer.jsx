@@ -1,5 +1,4 @@
 import styles from "../style";
-import { logo } from "../assets";
 
 const Footer = () => (
   <section className={`${styles.flexCenter} ${styles.paddingY} flex-col`}>

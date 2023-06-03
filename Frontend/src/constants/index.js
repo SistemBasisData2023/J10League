@@ -96,33 +96,3 @@ export const result = [
     match_details : "AURA Esports vs GPX",
   },
 ];
-
-export const features = [
-  {
-    id: "1",
-    icon: logo_m4,
-    title: "M4",
-    content: "International",
-    teams: "ECHO vs Blacklist International",
-    date: "12 November 2022",
-    match_details : "LOWER FINAL - BEST OF 3",
-  },
-  {
-    id: "2",
-    icon: logo_mpl,
-    title: "MPL ID Season 11",
-    content: "Indonesia",
-    teams: "EVOS Legend vs Alter Ego",
-    date: "21 April 2022",
-    match_details : "GROUP STAGE - BEST OF 3",
-  },
-  {
-    id: "3",
-    icon: logo_mdl,
-    title: "MDL ID Season 7",
-    content: "Indonesia",
-    teams: "Bigetron vs Rex Regum Qeon",
-    date: "10 Mei 2022",
-    match_details : "UPPER FINAL - BEST OF 3",
-  },
-];

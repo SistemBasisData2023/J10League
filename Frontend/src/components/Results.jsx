@@ -1,7 +1,7 @@
 import { result } from "../constants";
 import styles, { layout } from "../style";
 
-const FeatureCard = ({ icon, title, content, winners, score, match_details, index }) => (
+const FeatureCard = ({ index }) => (
     <div className={`overflow-x-auto ${index !== result.length - 1 ? "mb-6" : "mb-0"} feature-card`}>
         <table className={`table ${styles.flexCenter}`}>
             <thead>

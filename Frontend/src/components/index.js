@@ -4,7 +4,6 @@ import Results from "./Results";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Login from "./Login";
-import Table from "./Table"
 
 export {
   Navbar,
@@ -13,5 +12,4 @@ export {
   Footer,
   Hero,
   Login,
-  Table,
 };
