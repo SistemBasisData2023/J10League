@@ -1,4 +1,4 @@
-import { send, shield, star, logo_m4, logo_mdl, logo_pialapresiden, logo_mpl  } from "../assets";
+import { logo_m4, logo_mdl, logo_pialapresiden, logo_mpl  } from "../assets";
 
 export const navLinks = [
   {
@@ -34,7 +34,7 @@ export const schedule = [
     icon: logo_mpl,
     title: "MPL ID Season 11",
     content: "Indonesia",
-    teams: "EVOS Legend vs Alter Ego",
+    teams: "EVOS Legends vs Alter Ego",
     date: "21 April 2022",
     match_details : "GROUP STAGE - BEST OF 3",
   },
@@ -46,6 +46,15 @@ export const schedule = [
     teams: "Bigetron vs Rex Regum Qeon",
     date: "10 Mei 2022",
     match_details : "UPPER FINAL - BEST OF 3",
+  },
+  {
+    id: "4",
+    icon: logo_pialapresiden,
+    title: "Piala Presiden 2022",
+    content: "Indonesia",
+    teams: "AURA Esports vs GPX",
+    date: "17 Agustus 2022",
+    match_details : "Playoffs - BEST OF 3",
   },
 ];
 
@@ -76,6 +85,15 @@ export const result = [
     winners: "Rex Regum Qeon",
     score: "1 - 2",
     match_details : "Bigetron vs Rex Regum Qeon",
+  },
+  {
+    id: "5",
+    icon: logo_pialapresiden,
+    title: "Piala Presiden 2022",
+    content: "Indonesia",
+    winners: "GPX",
+    score: "0 - 2",
+    match_details : "AURA Esports vs GPX",
   },
 ];
 
