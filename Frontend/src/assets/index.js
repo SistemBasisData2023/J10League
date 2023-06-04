@@ -8,12 +8,12 @@ import star from "./Star.svg";
 import menu from "./menu.svg";
 import close from "./close.svg";
 import user from "./user.png"
-import logo_mpl from "./logo-mpl.png"
-import logo_pialapresiden from "./logo-pialapresiden.png"
-import logo_m4 from "./logo-m4.png"
-import logo_mdl from "./logo-mdl.png"
+import MPL from "./logo-mpl.png"
+import PP from "./logo-pialapresiden.png"
+import M4 from "./logo-m4.png"
+import MDL from "./logo-mdl.png"
 
-export {
+export{
   logo,
   heroml,
   heroml2,
@@ -24,8 +24,8 @@ export {
   menu,
   close,
   user,
-  logo_mpl,
-  logo_pialapresiden,
-  logo_m4,
-  logo_mdl,
+  MPL,
+  PP,
+  M4,
+  MDL,
 };

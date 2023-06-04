@@ -1,50 +1,63 @@
-import { schedule } from "../constants";
+import * as assets from "../assets";
 import styles, { layout } from "../style";
+import React, { useState, useEffect } from "react";
 
-const FeatureCard = ({ index }) => (
-  <div className={`overflow-x-auto ${index !== schedule.length - 1 ? "mb-6" : "mb-0"} feature-card`}>
-    <table className={`table ${styles.flexCenter}`}>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Teams</th>
-          <th>Match Date</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {schedule.map((data, index) => {
-          return (
-            <tr key={ index }>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={data.icon} alt="page-icon" />
+const FeatureCard = ({ props, index }) => {
+  const [matches, setMatches] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/upcomingMatches")
+      .then((response) => response.json())
+      .then((data) => setMatches(data))
+      .catch((error) => console.error("Error fetching data", error));
+  }, []);
+
+  return (
+    <div className={`overflow-x-auto mb-6 feature-card`}>
+      <table className={`table ${styles.flexCenter}`}>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Teams</th>
+            <th>Match Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {matches.map((match, index) => {
+            return (
+              <tr key={ index }>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img src={assets[match.tournament_id]} alt="page-icon" />
+                        
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold"> {match.tournament_name} </div>
+                      <div className="text-sm opacity-50"> {match.scope} </div>
                     </div>
                   </div>
-                  <div>
-                    <div className="font-bold"> {data.title} </div>
-                    <div className="text-sm opacity-50"> {data.content} </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                {data.teams}
-                <br />
-                <span className="badge badge-ghost badge-sm"> {data.match_details} </span>
-              </td>
-              <td> {data.date} </td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  </div>
-);
+                </td>
+                <td>
+                  {match.team_code_1} vs {match.team_code_2}
+                  <br />
+                  <span className="badge badge-ghost badge-sm"> {match.stage} - {match.best_of} </span>
+                </td>
+                <td> {match.match_date} </td>
+                <th>
+                  <button className="btn btn-ghost btn-xs">details</button>
+                </th>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 const Schedule = () => (
   <section id="schedule" className={layout.section}>
