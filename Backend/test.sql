@@ -1,12 +1,27 @@
 --dump text for copy paste sql queries
 
 CREATE TYPE status AS ENUM ('Upcoming', 'Ongoing', 'Completed');
-CREATE TYPE role AS ENUM ('Jungler', 'Gold Laner', 'EXP Laner');
+CREATE TYPE role AS ENUM ('Jungler', 'Gold Laner', 'EXP Laner', 'Roamer', 'Mid Laner');
+CREATE TYPE HERO AS ENUM (
+    'Aamon', 'Akai', 'Aldous', 'Alice', 'Alpha', 'Alucard', 'Angela', 'Argus', 'Arlott', 'Atlas', 
+    'Aulus', 'Aurora', 'Badang', 'Balmond', 'Bane', 'Barats', 'Baxia', 'Beatrix', 'Belerick', 
+    'Benedetta', 'Brody', 'Bruno', 'Carmilla', 'Cecilion', 'Chang_e', 'Chou', 'Claude', 'Clint', 
+    'Cyclops', 'Diggie', 'Dyrroth', 'Edith', 'Esmeralda', 'Estes', 'Eudora', 'Fanny', 'Faramis', 
+    'Floryn', 'Franco', 'Fredrinn', 'Freya', 'Gatotkaca', 'Gloo', 'Gord', 'Granger', 'Grock', 
+    'Guinevere', 'Gusion', 'Hanabi', 'Hanzo', 'Harith', 'Harley', 'Hayabusa', 'Helcurt', 'Hilda', 
+    'Hylos', 'Irithel', 'Jawhead', 'Johnson', 'Joy', 'Julian', 'Kadita', 'Kagura', 'Kaja', 
+    'Karina', 'Karrie', 'Khaleed', 'Khufra', 'Kimmy', 'Lancelot', 'Lapu-Lapu', 'Layla', 'Leomord', 
+    'Lesley', 'Ling', 'Lolita', 'Lunox', 'Luo Yi', 'Lylia', 'Martis', 'Masha', 'Mathilda', 'Melissa', 
+    'Minotaur', 'Minsitthar', 'Miya', 'Moskov', 'Nana', 'Natalia', 'Natan', 'Novaria', 'Odette', 
+    'Paquito', 'Pharsa', 'Phoveus', 'Popol and Kupa', 'Rafaela', 'Roger', 'Ruby', 'Saber', 'Selena', 
+    'Silvanna', 'Sun', 'Terizla', 'Thamuz', 'Tigreal', 'Uranus', 'Vale', 'Valentina', 'Valir', 'Vexana', 
+    'Wanwan', 'X.Borg', 'Xavier', 'Yi Sun-Shin', 'Yin', 'Yu Zhong', 'Yve', 'Zhask', 'Zilong'
+);
 
 CREATE TABLE users (
     id serial PRIMARY KEY,
     username varchar(255) UNIQUE NOT NULL,
-    password_hash char(64) NOT NULL
+    pass char(64) NOT NULL
 );
 
 CREATE TABLE teams (
@@ -64,5 +79,5 @@ CREATE TABLE round_detail (
 CREATE TABLE round_loadout (
     round_id varchar(9) REFERENCES round_detail,
     member_id varchar(6) REFERENCES team_info,
-    hero text NOT NULL
+    hero HERO NOT NULL
 );
