@@ -96,3 +96,81 @@ export const result = [
     match_details : "AURA Esports vs GPX",
   },
 ];
+
+  export const details_team1 = [
+    {
+      id: "1",
+      icon: M4,
+      title: "M4",
+      content: "International",
+      winners: "Blacklist International",
+      score: "0 - 2",
+      match_details : "ECHO vs Blacklist International",
+    },
+    {
+      id: "2",
+      icon: MPL,
+      title: "MPL ID Season 11",
+      content: "Indonesia",
+      winners: "EVOS Legend",
+      score: "2 - 1",
+      match_details : "EVOS Legend vs Alter Ego",
+    },
+    {
+      id: "3",
+      icon: MDL,
+      title: "MDL ID Season 7",
+      content: "Indonesia",
+      winners: "Rex Regum Qeon",
+      score: "1 - 2",
+      match_details : "Bigetron vs Rex Regum Qeon",
+    },
+    {
+      id: "5",
+      icon: PP,
+      title: "Piala Presiden 2022",
+      content: "Indonesia",
+      winners: "GPX",
+      score: "0 - 2",
+      match_details : "AURA Esports vs GPX",
+    },
+];
+
+export const details_team2 = [
+  {
+    id: "1",
+    icon: M4,
+    title: "M4",
+    content: "International",
+    winners: "Blacklist International",
+    score: "0 - 2",
+    match_details : "ECHO vs Blacklist International",
+  },
+  {
+    id: "2",
+    icon: MPL,
+    title: "MPL ID Season 11",
+    content: "Indonesia",
+    winners: "EVOS Legend",
+    score: "2 - 1",
+    match_details : "EVOS Legend vs Alter Ego",
+  },
+  {
+    id: "3",
+    icon: MDL,
+    title: "MDL ID Season 7",
+    content: "Indonesia",
+    winners: "Rex Regum Qeon",
+    score: "1 - 2",
+    match_details : "Bigetron vs Rex Regum Qeon",
+  },
+  {
+    id: "5",
+    icon: PP,
+    title: "Piala Presiden 2022",
+    content: "Indonesia",
+    winners: "GPX",
+    score: "0 - 2",
+    match_details : "AURA Esports vs GPX",
+  },
+];

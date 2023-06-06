@@ -36,7 +36,7 @@ const FeatureCard = ({ index }) => (
                             </td>
                             <td> {data.score} </td>
                             <th>
-                                <button className="btn btn-ghost btn-xs">details</button>
+                                <a href="/matchdetails" className="btn btn-ghost btn-xs">details</a>
                             </th>
                         </tr>
                     );
