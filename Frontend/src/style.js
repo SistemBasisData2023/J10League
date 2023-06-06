@@ -13,6 +13,8 @@ const style = {
 
   marginX: "sm:mx-16 mx-6",
   marginY: "sm:my-16 my-6",
+
+  nempelAtas: "fixed top-0",
 };
 
 export const layout = {
