@@ -92,7 +92,7 @@ app.post('/LoginAdmin', (req, res) => {
   );
 });
 
-/* ini masih tes, gak tau bener apa nggak, jangan uncomment dulu -jep
+/* ini masih kasar, gak tau bener apa nggak, jangan uncomment dulu -jep
 
 app.post('/InsertTeams', (req, res) => {
   db.query(
@@ -111,6 +111,9 @@ app.post('/InsertTeams', (req, res) => {
 //atau mending team_id ganti team_name, soalnya pas masukin member user taunya nama tim, bukan id tim kan?
 app.post('/InsertTeamsInfo', (req, res) => {
   const team_id = req.body.team_id
+  var team_code
+  var member_count
+  var member_id
 
   //first, get the team_code from teams table, needed for member_id generation
   const getTeamQuery = `SELECT * FROM teams WHERE team_id = ${team_id}`
@@ -122,7 +125,7 @@ app.post('/InsertTeamsInfo', (req, res) => {
       console.error("Error executing query", err);
       return
     }
-    var team_code = result.body.team_code //using var keyword, this variable should be able to be used outside of this block scope
+    team_code = result.body.team_code
   });
 
   db.query(memberCountQuery, (err, result) => {
@@ -130,11 +133,11 @@ app.post('/InsertTeamsInfo', (req, res) => {
       console.error("Error executing query", err);
       return
     }
-    var member_count = result.body.COUNT(member_id)
+    member_count = result.body.COUNT(member_id)
     //COUNT(member_id) is supposed to be the column name where the count number is stored, but dunno how correct case-sensitive? might have to test and revise
   });
 
-  var member_id = team.code + "_" + (++member_count) //auto-generate member_id from team_code, concatenate with underscore(_) and (member_count + 1)
+  member_id = team_code + "_" + (++member_count) //auto-generate member_id from team_code, concatenate with underscore(_) and (member_count + 1)
 
   //finally use all the available resource to create new record in team_info table
   const finalQuery = `INSERT INTO team_info VALUES (${team_id}, '${member_id}', '${req.body.member_name}', '${req.body.member_role}')`

@@ -31,11 +31,6 @@ CREATE TABLE tournaments (
     end_date date NOT NULL
 );
 
-CREATE TABLE tournament_matches (
-    tournament_id int REFERENCES tournaments,
-    match_id varchar(6) REFERENCES match_info
-);
-
 CREATE TABLE match_info (
     match_id varchar(6) PRIMARY KEY,
     team_id_1 int NOT NULL,
@@ -50,7 +45,12 @@ CREATE TABLE match_info (
     fourth_round_id varchar(9) UNIQUE NULL,
     fifth_round_id varchar(9) UNIQUE NULL,
     sixth_round_id varchar(9) UNIQUE NULL,
-    seventh_round_id varchar(9) UNIQUE NULL,
+    seventh_round_id varchar(9) UNIQUE NULL
+);
+
+CREATE TABLE tournament_matches (
+    tournament_id int REFERENCES tournaments,
+    match_id varchar(6) REFERENCES match_info
 );
 
 CREATE TABLE round_detail (
@@ -58,7 +58,7 @@ CREATE TABLE round_detail (
     winner_id int REFERENCES teams,
     team_1_score int NOT NULL,
     team_2_score int NOT NULL,
-    duration text NOT NULL,
+    duration text NOT NULL
 );
 
 CREATE TABLE round_loadout (
