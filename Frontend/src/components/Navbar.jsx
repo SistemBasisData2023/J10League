@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className={`${style.paddingX} w-full flex justify-center ${style.nempelAtas} transition-colors duration-300 z-50 ${scrolled ? "bg-gray-800" : "bg-transparent"}`}>
         <div className={`${style.boxWidth}`}>
           <div className="w-full flex py-6 justify-between items-center navbar">
-            <img src={logo} alt="hoobank" className="w-[px] h-[50px]" />
+            <img src={logo} alt="j10league" className="w-[px] h-[50px]" />
 
             <ul className="list-none sm:flex hidden justify-end items-center flex-1">
               {navLinks.map((nav, index) => (
@@ -64,7 +64,7 @@ const Navbar = () => {
                       } ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
                       onClick={() => setActive(nav.title)}
                     >
-                      <a href={`${nav.id}`}>{nav.title}</a>
+                      <a href={`/${nav.id}`}>{nav.title}</a>
                     </li>
                   ))}
                 </ul>

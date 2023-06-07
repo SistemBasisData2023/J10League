@@ -5,6 +5,7 @@ import App from './App';
 import MainPage from './MainPage';
 import LoginPage from './LoginPage';
 import MatchDetailsPage from './MatchDetailsPage';
+import ErrorPage from './404Page';
 import './index.css';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 
@@ -14,13 +15,14 @@ const router = createBrowserRouter(
       <Route index element={<MainPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="matchdetails" element={<MatchDetailsPage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Route>
   )
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router = {router}>
+    <RouterProvider router={router}>
     </RouterProvider>
   </React.StrictMode>
 );

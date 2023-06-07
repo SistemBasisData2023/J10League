@@ -1,4 +1,5 @@
 import { details_team1, details_team2 } from "../constants";
+import * as assets from "../assets";
 import styles, { layout } from "../style";
 
 const FeatureCard = ({ index }) => (
@@ -10,7 +11,6 @@ const FeatureCard = ({ index }) => (
             <th>In Game Name</th>
             <th>K/D/A</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -21,37 +21,32 @@ const FeatureCard = ({ index }) => (
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={data.icon} alt="page-icon" />
+                        <img src={data.hero} alt="page-icon" />
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold"> {data.title} </div>
-                      <div className="text-sm opacity-50"> {data.content} </div>
+                      <div className="font-bold"> {data.ign} </div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  {data.winners}
+                  {data.kda}
                   <br />
-                  <span className="badge badge-ghost badge-sm"> {data.match_details} </span>
                 </td>
-                <td> {data.score} </td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
+                <td> {data.details} </td>
               </tr>
             );
           })}
         </tbody>
       </table>
     </div>
+
     <div className={`overflow-x-auto ${index !== details_team2.length - 1 ? "mb-6" : "mb-0"} feature-card`}>
       <table className={`table ${styles.flexCenter}`}>
         <thead>
           <tr>
             <th>In Game Name</th>
             <th>K/D/A</th>
-            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -63,24 +58,19 @@ const FeatureCard = ({ index }) => (
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={data.icon} alt="page-icon" />
+                        <img src={data.hero} alt="page-icon" />
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold"> {data.title} </div>
-                      <div className="text-sm opacity-50"> {data.content} </div>
+                      <div className="font-bold"> {data.ign} </div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  {data.winners}
+                  {data.kda}
                   <br />
-                  <span className="badge badge-ghost badge-sm"> {data.match_details} </span>
                 </td>
-                <td> {data.score} </td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
+                <td> {data.details} </td>
               </tr>
             );
           })}
@@ -88,13 +78,10 @@ const FeatureCard = ({ index }) => (
       </table>
     </div>
   </section>
-
-
-
 );
 
 const MatchDetails = () => (
-  <section id="schedule" className={layout.section}>
+  <section id="matchdetails" className={layout.section}>
     <div className={`flex-2 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
       <div className="flex flex-row justify-between items-center w-full">
         <h1 className="flex-1 font-poppins font-semibold ss:text-[60px] text-[52px] text-white ss:leading-[100.8px] leading-[75px]">
