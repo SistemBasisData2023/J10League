@@ -90,26 +90,30 @@ app.post("/RegisterAdmin", async (req, res) => {
 });
 
 
-app.post('/LoginAdmin', (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+app.get("/LoginAdmin", async (req, res) => {
+  const { username, password } = req.body;
 
-  db.query(
-    `SELECT * FROM admin WHERE username = '${username}' AND password_hash = crypt('${password}', password_hash);`,
-    (err, result) => {
-      if (err) {
-        console.error("Error executing query", err);
-        return res.status(500).send("Internal Server Error");
-      }
+  try {
+    const query = "SELECT * FROM admin WHERE username = $1";
+    const result = await db.query(query, [username]);
+    const admin = result.rows[0];
 
-      if (result.rows.length === 0) {
-        // No matching user found
-        return res.status(401).send("Invalid username or password");
-      }
-
-      res.send("Login successful");
+    if (!admin) {
+      res.status(401).json({ error: "Invalid credentials" });
+      return;
     }
-  );
+
+    const isPasswordValid = await bcrypt.compare(password, admin.password);
+
+    if (isPasswordValid) {
+      res.status(200).json({ message: "Login successful" });
+    } else {
+      res.status(401).json({ error: "Invalid credentials" });
+    }
+  } catch (error) {
+    console.error("Error logging in:", error);
+    res.status(500).json({ error: "Failed to log in" });
+  }
 });
 
 /* ini masih kasar, gak tau bener apa nggak, jangan uncomment dulu -jep

@@ -3,20 +3,32 @@ import styles from "../style";
 import { heroml2 } from "../assets";
 
 const Login = () => {
-    // const handleLogin = (event) => {
-    //     event.preventDefault();
-    //     const username = event.target.username.value;
-    //     const password = event.target.password.value;
-
-    //     // Perform login validation here
-    //     // For simplicity, let's just log the values for now
-    //     console.log('Username:', username);
-    //     console.log('Password:', password);
-    //     // You can add your own logic here to authenticate the user
-
-    // };
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await fetch("http://localhost:3001/LoginAdmin", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password }),
+            });
+      
+            if (response.ok) {
+              console.log("Login successful");
+              // Perform any additional actions after successful login
+            } else {
+              console.error("Failed to login");
+              // Handle the error scenario
+            }
+          } catch (error) {
+            console.error("Error logging in:", error);
+            // Handle the error scenario
+          }
+    };
 
     const handleRegister = async (event) => {
         event.preventDefault();
@@ -40,7 +52,7 @@ const Login = () => {
             console.error("Error registering admin:", error);
             // Handle the error scenario
           }
-        };
+    };
     
     return (
         <section id="login" className={`gap-20 flex md:flex-row flex-col`}>
@@ -60,7 +72,7 @@ const Login = () => {
                     </h1>
                 </div>
 
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleLogin}>
                     <div className="font-poppins font-semibold text-white text-[15px] leading-[23.4px] mb-1">
                         <label htmlFor="username" className="block mb-2">Username</label>
                         <input type="text" id="username" name="username" className="w-full px-3 py-2 border rounded-md" value={username} onChange={(event) => setUsername(event.target.value)} required />
