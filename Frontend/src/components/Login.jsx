@@ -72,7 +72,8 @@ const Login = () => {
                     </h1>
                 </div>
 
-                <form onSubmit={handleLogin}>
+                {/* <form onSubmit={handleLogin}> */}
+                <form onSubmit={handleRegister}>
                     <div className="font-poppins font-semibold text-white text-[15px] leading-[23.4px] mb-1">
                         <label htmlFor="username" className="block mb-2">Username</label>
                         <input type="text" id="username" name="username" className="w-full px-3 py-2 border rounded-md" value={username} onChange={(event) => setUsername(event.target.value)} required />
