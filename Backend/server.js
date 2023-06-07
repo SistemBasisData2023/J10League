@@ -2,6 +2,7 @@ const express = require("express");
 const { Client } = require("pg");
 const cors = require("cors");
 const bp = require("body-parser");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const port = 3001;
@@ -56,19 +57,38 @@ app.get("/upcomingMatches", (req, res) => {
   );
 });
 
-app.post('/RegisterAdmin', (req, res) => {
-  console.log('Request Body:', req.body); // Add this line to check the request body
-  db.query(
-    `INSERT INTO admin (username, password_hash) VALUES 
-    ('${req.body.username}', crypt('${req.body.password_hash}', '$6$random_salt_string'));`, 
-    (err) => {
-      if (err) {
-        console.error("Error executing query", err);
-        return
-      }
-      res.send('Register Success ' + req.body.username + ' ' + req.body.password)
-    })
+// app.post('/RegisterAdmin', (req, res) => {
+//   console.log('Request Body:', req.body); // Add this line to check the request body
+//   db.query(
+//     `INSERT INTO admin (username, password_hash) VALUES 
+//     ('${req.body.username}', crypt('${req.body.password_hash}', '$6$random_salt_string'));`, 
+//     (err) => {
+//       if (err) {
+//         console.error("Error executing query", err);
+//         return
+//       }
+//       res.send('Register Success ' + req.body.username + ' ' + req.body.password)
+//     })
+// });
+
+app.post("/RegisterAdmin", async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Hash the password using bcrypt
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert the admin information into the database
+    const query = "INSERT INTO admin (username, password_hash) VALUES ($1, $2)";
+    await db.query(query, [username, hashedPassword]);
+
+    res.status(200).json({ message: "Admin registered successfully" });
+  } catch (error) {
+    console.error("Error registering admin:", error);
+    res.status(500).json({ error: "Failed to register admin" });
+  }
 });
+
 
 app.post('/LoginAdmin', (req, res) => {
   const username = req.body.username;

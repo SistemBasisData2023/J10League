@@ -1,20 +1,46 @@
-import React from 'react';
+import React, { useState } from "react";
 import styles from "../style";
 import { heroml2 } from "../assets";
 
 const Login = () => {
-    const handleLogin = (event) => {
+    // const handleLogin = (event) => {
+    //     event.preventDefault();
+    //     const username = event.target.username.value;
+    //     const password = event.target.password.value;
+
+    //     // Perform login validation here
+    //     // For simplicity, let's just log the values for now
+    //     console.log('Username:', username);
+    //     console.log('Password:', password);
+    //     // You can add your own logic here to authenticate the user
+
+    // };
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleRegister = async (event) => {
         event.preventDefault();
-        const username = event.target.username.value;
-        const password = event.target.password.value;
-
-        // Perform login validation here
-        // For simplicity, let's just log the values for now
-        console.log('Username:', username);
-        console.log('Password:', password);
-        // You can add your own logic here to authenticate the user
-
-    };
+        try {
+            const response = await fetch("http://localhost:3001/RegisterAdmin", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password }),
+            });
+      
+            if (response.ok) {
+              console.log("Admin registered successfully");
+              // Perform any additional actions after successful registration
+            } else {
+              console.error("Failed to register admin");
+              // Handle the error scenario
+            }
+          } catch (error) {
+            console.error("Error registering admin:", error);
+            // Handle the error scenario
+          }
+        };
     
     return (
         <section id="login" className={`gap-20 flex md:flex-row flex-col`}>
@@ -34,14 +60,14 @@ const Login = () => {
                     </h1>
                 </div>
 
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleRegister}>
                     <div className="font-poppins font-semibold text-white text-[15px] leading-[23.4px] mb-1">
                         <label htmlFor="username" className="block mb-2">Username</label>
-                        <input type="text" id="username" name="username" className="w-full px-3 py-2 border rounded-md" required />
+                        <input type="text" id="username" name="username" className="w-full px-3 py-2 border rounded-md" value={username} onChange={(event) => setUsername(event.target.value)} required />
                     </div>
                     <div className="font-poppins font-semibold text-white text-[15px] leading-[23.4px] mb-1">
                         <label htmlFor="password" className="block mb-2">Password</label>
-                        <input type="password" id="password" name="password" className="w-full px-3 py-2 border rounded-md" required />
+                        <input type="password" id="password" name="password" className="w-full px-3 py-2 border rounded-md" value={password} onChange={(event) => setPassword(event.target.value)} required />
                     </div>
                     <button type="submit" className="gap-x-10 font-poppins font-medium text-[18px] text-primary bg-blue-gradient px-4 py-2 rounded-md mt-2">Login</button>
                 </form>
