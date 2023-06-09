@@ -82,16 +82,15 @@ const FeatureCard = ({ index }) => (
 
 const MatchDetails = () => (
   <section id="matchdetails" className={layout.section}>
-    <div className={`flex-2 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
-      <div className="flex flex-row justify-between items-center w-full">
-        <h1 className="flex-1 font-poppins font-semibold ss:text-[60px] text-[52px] text-white ss:leading-[100.8px] leading-[75px]">
-          <span className="text-gradient"> Team A</span> <br className="sm:block hidden" />{" "}
-          <span> VS </span><br className="sm:block hidden" />{" "}
-          <span className="text-gradient"> Team B</span> <br className="sm:block hidden" />{" "}
-        </h1>
-      </div>
-    </div>
     <div className={`${layout.sectionImg} flex-col`}>
+      <h1 className="justify-center font-poppins font-semibold ss:text-[60px] text-[52px] text-white ss:leading-[100.8px] leading-[75px]">
+        <span className="text-gradient"> Team A</span> <br className="sm:block hidden" />{" "}
+        <span> VS </span><br className="sm:block hidden" />{" "}
+        <span className="text-gradient"> Team B</span> <br className="sm:block hidden" />{" "}
+      </h1>
+    </div>
+
+    <div className={`${layout.sectionInfo} flex-col`}>
       <FeatureCard />
     </div>
   </section>
