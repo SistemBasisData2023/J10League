@@ -16,12 +16,13 @@ const Login = () => {
               },
               body: JSON.stringify({ username, password }),
             });
-      
+            const data = await response.json();
+            console.log(data);
             if (response.ok) {
-              console.log("Login successful");
+              alert("Logged in successfully");
               // Perform any additional actions after successful login
             } else {
-              console.error("Failed to login");
+              alert("Failed to login");
               // Handle the error scenario
             }
           } catch (error) {
@@ -42,10 +43,10 @@ const Login = () => {
             });
       
             if (response.ok) {
-              console.log("Admin registered successfully");
-              // Perform any additional actions after successful registration
+                alert("Admin registered successfully");
+                window.location.reload(false);
             } else {
-              console.error("Failed to register admin");
+                alert("Failed to register admin");
               // Handle the error scenario
             }
           } catch (error) {
@@ -72,8 +73,8 @@ const Login = () => {
                     </h1>
                 </div>
 
-                {/* <form onSubmit={handleLogin}> */}
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleLogin}>
+                {/* <form onSubmit={handleRegister}> */}
                     <div className="font-poppins font-semibold text-white text-[15px] leading-[23.4px] mb-1">
                         <label htmlFor="username" className="block mb-2">Username</label>
                         <input type="text" id="username" name="username" className="w-full px-3 py-2 border rounded-md" value={username} onChange={(event) => setUsername(event.target.value)} required />

@@ -57,20 +57,6 @@ app.get("/upcomingMatches", (req, res) => {
   );
 });
 
-// app.post('/RegisterAdmin', (req, res) => {
-//   console.log('Request Body:', req.body); // Add this line to check the request body
-//   db.query(
-//     `INSERT INTO admin (username, password_hash) VALUES 
-//     ('${req.body.username}', crypt('${req.body.password_hash}', '$6$random_salt_string'));`, 
-//     (err) => {
-//       if (err) {
-//         console.error("Error executing query", err);
-//         return
-//       }
-//       res.send('Register Success ' + req.body.username + ' ' + req.body.password)
-//     })
-// });
-
 app.post("/RegisterAdmin", async (req, res) => {
   const { username, password } = req.body;
 
@@ -89,32 +75,36 @@ app.post("/RegisterAdmin", async (req, res) => {
   }
 });
 
-
-app.get("/LoginAdmin", async (req, res) => {
+app.post("/LoginAdmin", async (req, res) => {
   const { username, password } = req.body;
-
-  try {
-    const query = "SELECT * FROM admin WHERE username = $1";
-    const result = await db.query(query, [username]);
-    const admin = result.rows[0];
-
-    if (!admin) {
-      res.status(401).json({ error: "Invalid credentials" });
-      return;
+  
+  db.query(
+    `SELECT * FROM admin WHERE username = '${username}'`,
+    async (err, result) => {
+      if (result.rows.length === 0) {
+        alert("Invalid username or password");
+        return res.status(401).json({ error: "Invalid username or password" });
+      }
+      if (err) {
+        console.error("Error executing query", err);
+        return;
+      }
+      const storedData = result.rows[0];
+      bcrypt.compare(password, storedData.password_hash, (err, isMatch) => {
+        if (err) {
+          console.error("Error comparing password", err);
+          return;
+        }
+        if (isMatch) {
+          return res.status(200).json({ message: "Login success" });
+        } else {
+          return res.status(401).json({ error: "Invalid username or password" });
+        }
+      })
     }
-
-    const isPasswordValid = await bcrypt.compare(password, admin.password);
-
-    if (isPasswordValid) {
-      res.status(200).json({ message: "Login successful" });
-    } else {
-      res.status(401).json({ error: "Invalid credentials" });
-    }
-  } catch (error) {
-    console.error("Error logging in:", error);
-    res.status(500).json({ error: "Failed to log in" });
-  }
+  );
 });
+
 
 /* ini masih kasar, gak tau bener apa nggak, jangan uncomment dulu -jep
 
