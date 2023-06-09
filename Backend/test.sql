@@ -53,14 +53,14 @@ CREATE TABLE match_info (
     match_date date NOT NULL,
     match_status status NOT NULL,
     match_stage text NOT NULL,
-    round_counts int NOT NULL,
-    first_round_id varchar(9) UNIQUE NOT NULL,
-    second_round_id varchar(9) UNIQUE NOT NULL,
-    third_round_id varchar(9) UNIQUE NOT NULL,
-    fourth_round_id varchar(9) UNIQUE NULL,
-    fifth_round_id varchar(9) UNIQUE NULL,
-    sixth_round_id varchar(9) UNIQUE NULL,
-    seventh_round_id varchar(9) UNIQUE NULL
+    round_count int NOT NULL,
+    first_round_id varchar(9) REFERENCES round_detail,
+    second_round_id varchar(9) REFERENCES round_detail,
+    third_round_id varchar(9) REFERENCES round_detail,
+    fourth_round_id varchar(9) REFERENCES round_detail,
+    fifth_round_id varchar(9) REFERENCES round_detail,
+    sixth_round_id varchar(9) REFERENCES round_detail,
+    seventh_round_id varchar(9) REFERENCES round_detail
 );
 
 CREATE TABLE tournament_matches (
