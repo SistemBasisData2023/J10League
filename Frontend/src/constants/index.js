@@ -2,7 +2,7 @@ import { M4, MDL, PP, MPL, Aamon, Miya, Balmond, Jawhead, Harith } from "../asse
 
 export const navLinks = [
   {
-    id: "#home",
+    id: "home",
     title: "Home",
   },
   {
@@ -12,6 +12,10 @@ export const navLinks = [
   {
     id: "#result",
     title: "Results",
+  },
+  {
+    id: "teams",
+    title: "Teams",
   },
   {
     id: "login",

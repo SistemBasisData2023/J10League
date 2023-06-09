@@ -20,7 +20,6 @@ const FeatureCard = ({ props, index }) => {
             <th>Name</th>
             <th>Teams</th>
             <th>Match Date</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -47,9 +46,6 @@ const FeatureCard = ({ props, index }) => {
                   <span className="badge badge-ghost badge-sm"> {match.stage} - {match.best_of} </span>
                 </td>
                 <td> {match.match_date} </td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
               </tr>
             );
           })}
