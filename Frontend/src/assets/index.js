@@ -1,10 +1,12 @@
-import logo from "./logo.svg";
+import logo from "./logo-j10league.png";
 import heroml from "./heroml.png";
 import heroml2 from "./heroml2.png";
 import heroml3 from "./heroml3.png";
 import send from "./Send.svg";
 import shield from "./Shield.svg";
 import star from "./Star.svg";
+import edit from "./Edit.svg";
+import trash from "./Trash.svg";
 import menu from "./menu.svg";
 import close from "./close.svg";
 import user from "./user.png"
@@ -141,6 +143,8 @@ export{
   send,
   shield,
   star,
+  trash,
+  edit,
   menu,
   close,
   user,

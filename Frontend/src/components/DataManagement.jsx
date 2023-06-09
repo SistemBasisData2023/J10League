@@ -48,6 +48,14 @@ const Upcoming = ({ props, index }) => {
                                     <span className="badge badge-ghost badge-sm"> {match.stage} - {match.best_of} </span>
                                 </td>
                                 <td> {match.match_date} </td>
+                                <td>
+                                <div className="btn btn-ghost w-14 h-14">
+                                <img src={assets['edit']} />
+                                </div>
+                                <div className="btn btn-ghost w-14 h-14">
+                                <img src={assets['trash']}/>
+                                </div>
+                            </td>
                             </tr>
                         );
                     })}
@@ -92,11 +100,14 @@ const Results = ({ index }) => (
                                 <span className="badge badge-ghost badge-sm"> {data.match_details} </span>
                             </td>
                             <td> {data.score} </td>
-                            <th>
-                                <a href="" className="btn btn-ghost btn-xs">
-                                <img src={assets['star']} alt="page-icon" />
-                                </a>
-                            </th>
+                            <td>
+                                <div className="btn btn-ghost w-14 h-14">
+                                <img src={assets['edit']} />
+                                </div>
+                                <div className="btn btn-ghost w-14 h-14">
+                                <img src={assets['trash']}/>
+                                </div>
+                            </td>
                         </tr>
                     );
                 })}
