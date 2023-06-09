@@ -6,6 +6,8 @@ import Hero from "./Hero";
 import Login from "./Login";
 import MatchDetails from "./MatchDetails"
 import Error from "./Error"
+import DataManagement from "./DataManagement";
+import Button from "./Button";
 
 export {
   Navbar,
@@ -16,4 +18,6 @@ export {
   Login,
   MatchDetails,
   Error,
+  DataManagement,
+  Button,
 };
