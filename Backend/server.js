@@ -13,10 +13,10 @@ app.use(cors());
 app.options("*", cors());
 
 const db = new Client({
-  host: "ep-dry-dew-387527.ap-southeast-1.aws.neon.tech",
-  user: "arka.brian",
-  database: "proto3",
-  password: "yJ9jXpk4Qefv",
+  host: "ep-white-cake-586152.ap-southeast-1.aws.neon.tech",
+  user: "JeffriUI",
+  database: "j10league",
+  password: "8YTEQzCOrc5m",
   port: 5432,
   sslmode: "require",
   ssl: true,

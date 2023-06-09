@@ -2,7 +2,7 @@
 
 CREATE TYPE status AS ENUM ('Upcoming', 'Ongoing', 'Completed');
 CREATE TYPE role AS ENUM ('Jungler', 'Gold Laner', 'EXP Laner', 'Roamer', 'Mid Laner');
-CREATE TYPE HERO AS ENUM (
+CREATE TYPE hero AS ENUM (
     'Aamon', 'Akai', 'Aldous', 'Alice', 'Alpha', 'Alucard', 'Angela', 'Argus', 'Arlott', 'Atlas', 
     'Aulus', 'Aurora', 'Badang', 'Balmond', 'Bane', 'Barats', 'Baxia', 'Beatrix', 'Belerick', 
     'Benedetta', 'Brody', 'Bruno', 'Carmilla', 'Cecilion', 'Chang_e', 'Chou', 'Claude', 'Clint', 
@@ -46,6 +46,14 @@ CREATE TABLE tournaments (
     end_date date NOT NULL
 );
 
+CREATE TABLE round_detail (
+    round_id varchar(9) PRIMARY KEY,
+    winner_id int REFERENCES teams,
+    team_1_score int NULL,
+    team_2_score int NULL,
+    duration text NULL
+);
+
 CREATE TABLE match_info (
     match_id varchar(6) PRIMARY KEY,
     team_id_1 int NOT NULL,
@@ -68,16 +76,8 @@ CREATE TABLE tournament_matches (
     match_id varchar(6) REFERENCES match_info
 );
 
-CREATE TABLE round_detail (
-    round_id varchar(9) PRIMARY KEY,
-    winner_id int REFERENCES teams,
-    team_1_score int NULL,
-    team_2_score int NULL,
-    duration text NULL
-);
-
 CREATE TABLE round_loadout (
     round_id varchar(9) REFERENCES round_detail,
     member_id varchar(6) REFERENCES team_info,
-    member_hero HERO NOT NULL
+    member_hero hero NOT NULL
 );
