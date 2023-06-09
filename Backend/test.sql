@@ -71,13 +71,13 @@ CREATE TABLE tournament_matches (
 CREATE TABLE round_detail (
     round_id varchar(9) PRIMARY KEY,
     winner_id int REFERENCES teams,
-    team_1_score int NOT NULL,
-    team_2_score int NOT NULL,
-    duration text NOT NULL
+    team_1_score int NULL,
+    team_2_score int NULL,
+    duration text NULL
 );
 
 CREATE TABLE round_loadout (
     round_id varchar(9) REFERENCES round_detail,
     member_id varchar(6) REFERENCES team_info,
-    hero HERO NOT NULL
+    member_hero HERO NOT NULL
 );

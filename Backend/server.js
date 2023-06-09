@@ -106,9 +106,9 @@ app.post("/LoginAdmin", async (req, res) => {
 });
 
 
-/* ini masih kasar, gak tau bener apa nggak, jangan uncomment dulu -jep
+// ini masih kasar, gak tau bener apa nggak, jangan uncomment dulu -jep
 
-app.post('/InsertTeams', (req, res) => {
+app.post('/InsertTeam', (req, res) => {
   db.query(
     `INSERT INTO teams (team_code, team_name) VALUES ('${req.body.code}', '${req.body.name}');`,
     (err, result) => {
@@ -123,16 +123,16 @@ app.post('/InsertTeams', (req, res) => {
 
 //param reqnya antara team_id, member_name, sama member_role
 //atau mending team_id ganti team_name, soalnya pas masukin member user taunya nama tim, bukan id tim kan?
-app.post('/InsertTeamsInfo', (req, res) => {
+app.post('/InsertTeamInfo', (req, res) => {
   const team_id = req.body.team_id
   var team_code
   var member_count
   var member_id
 
   //first, get the team_code from teams table, needed for member_id generation
-  const getTeamQuery = `SELECT * FROM teams WHERE team_id = ${team_id}`
+  const getTeamQuery = `SELECT * FROM teams WHERE team_id = ${team_id};`
   //next, count the existing member in a team, to decide the number on member_id
-  const memberCountQuery = `SELECT COUNT(member_id) FROM team_info WHERE team_id = ${team_id}`
+  const memberCountQuery = `SELECT COUNT(member_id) FROM team_info WHERE team_id = ${team_id};`
 
   db.query(getTeamQuery, (err, result) => {
     if (err) {
@@ -154,7 +154,7 @@ app.post('/InsertTeamsInfo', (req, res) => {
   member_id = team_code + "_" + (++member_count) //auto-generate member_id from team_code, concatenate with underscore(_) and (member_count + 1)
 
   //finally use all the available resource to create new record in team_info table
-  const finalQuery = `INSERT INTO team_info VALUES (${team_id}, '${member_id}', '${req.body.member_name}', '${req.body.member_role}')`
+  const finalQuery = `INSERT INTO team_info VALUES (${team_id}, '${member_id}', '${req.body.member_name}', '${req.body.member_role}');`
 
   db.query(finalQuery, (err, result) => {
     if (err) {
@@ -165,7 +165,32 @@ app.post('/InsertTeamsInfo', (req, res) => {
   });
 });
 
-*/
+app.post('/InsertTournament', (req, res) => {
+  const code = req.body.code
+  const name = req.body.name
+  var status
+  const start_date = req.body.start_date
+  const end_date = req.body.end_date
+  
+  //function buat check tanggal sekarang sama start date end date, buat nentuin status
+  //kalo susah yaudah statusnya masukin manual aja
+
+  const query = `INSERT INTO tournaments (tournament_code, tournament_name, tournament_status, start_date, end_date) VALUES ('${code}', '${name}', '${status}', '${start_date}', '${end_date}');`
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error executing query", err);
+      return
+    }
+    res.json(result.rows) //post will return the inserted rows as json, dunno if will work or not, and kinda unnecessary so just erase if not needed
+  });
+});
+
+app.post('/InsertMatch', (req, res) => {
+  
+});
+
+//
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
