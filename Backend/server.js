@@ -229,6 +229,14 @@ app.post('/InsertMatch', (req, res) => {
     match_code = tournament_code + "_" + (++match_count)
   });
 
+  if(current_date < Date(String(match_date))){
+    status = "Upcoming"
+  } else if(current_date > Date(String(match_date))){
+    status = "Completed"
+  } else {
+    status = "Ongoing"
+  }
+
   //finally use all the available resource to create new record in match_info table
   const finalQuery = `INSERT INTO match_info (match_code, tournament_code, team_1_code, 
                           team_2_code, match_date, match_status, match_stage, round_count)
