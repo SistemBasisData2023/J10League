@@ -340,6 +340,30 @@ app.post('/InsertMatch', (req, res) => {
   }
 });
 
+app.put('/UpdateRound', (req, res) => {
+  const round_code = req.body.round_code
+  const winner = req.body.winner
+  const score_1 = req.body.score_1
+  const score_2 = req.body.score_2
+  const duration = req.body.duration
+
+  const query = `
+                UPDATE round_detail
+                SET winner_code = '${winner}'
+                    team_1_score = '${score_1}'
+                    team_2_score = '${score_2}'
+                    duration = '${duration}
+                WHERE round_code = '${round_code}'`
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error executing query", err)
+      return
+    }
+    res.send("Round updated successfully.")
+  })
+})
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
