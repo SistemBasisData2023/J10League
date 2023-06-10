@@ -105,33 +105,36 @@ app.post("/LoginAdmin", async (req, res) => {
   );
 });
 
+
+// ini masih kasar, gak tau bener apa nggak, jangan uncomment dulu -jep
+
 app.post('/InsertTeam', (req, res) => {
   const code = req.body.code
   const name = req.body.name
   db.query(
-    `INSERT INTO teams VALUES ('${code}', '${name}');`,
+    `INSERT INTO teams (team_code, team_name) VALUES ('${code}', '${name}');`,
     (err, result) => {
       if (err) {
         console.error("Error executing query", err);
         return
       }
-      res.send("Team data inserted successfully.")
+      //res.json(result.rows) //post will return the inserted rows as json, dunno if will work or not, and kinda unnecessary so just erase if not needed
     }
   );
 });
 
-//param: team_name, member_name, sama member_role
-//masih belom bisa, masalah di passing param yang varchar
+//param reqnya antara team_id, member_name, sama member_role
+//atau mending team_id ganti team_name, soalnya pas masukin member user taunya nama tim, bukan id tim kan?
 app.post('/InsertTeamInfo', (req, res) => {
-  const team_name = req.body.team_name
-  let team_code = "";
-  let member_count = 0;
-  let member_code = "";
+  const team_id = req.body.team_id
+  let team_code;
+  let member_count;
+  let member_id;
 
   //first, get the team_code from teams table, needed for member_id generation
-  const getTeamQuery = `SELECT * FROM teams WHERE team_name = ${team_name};`
+  const getTeamQuery = `SELECT * FROM teams WHERE team_id = ${team_id};`
   //next, count the existing member in a team, to decide the number on member_id
-  const memberCountQuery = `SELECT COUNT(member_id) FROM team_info WHERE team_code = ${team_code};`
+  const memberCountQuery = `SELECT COUNT(member_id) FROM team_info WHERE team_id = ${team_id};`
 
   db.query(getTeamQuery, (err, result) => {
     if (err) {
@@ -147,19 +150,18 @@ app.post('/InsertTeamInfo', (req, res) => {
       return
     }
     member_count = result.rows[0].count;
-    //auto-generate member_id from team_code, concatenate with underscore(_) and (member_count + 1)
-    member_code = team_code + "_" + (++member_count)
+    member_id = team_code + "_" + (++member_count) //auto-generate member_id from team_code, concatenate with underscore(_) and (member_count + 1)
   });
 
   //finally use all the available resource to create new record in team_info table
-  const finalQuery = `INSERT INTO team_info VALUES (${team_code}, '${member_code}', '${req.body.member_name}', '${req.body.member_role}');`
+  const finalQuery = `INSERT INTO team_info VALUES (${team_id}, '${member_id}', '${req.body.member_name}', '${req.body.member_role}');`
 
   db.query(finalQuery, (err, result) => {
     if (err) {
       console.error("Error executing query", err);
       return
     }
-    res.send("Team member data inserted successfully.")
+    //res.json(result.rows) //post will return the inserted rows as json, dunno if will work or not, and kinda unnecessary so just erase if not needed
   });
 });
 
@@ -169,12 +171,9 @@ app.post('/InsertTournament', (req, res) => {
   var status
   const start_date = req.body.start_date
   const end_date = req.body.end_date
-  const current_date = new Date()
   
   //function buat check tanggal sekarang sama start date end date, buat nentuin status
-  if(current_date < Date(String(start_date))){
-
-  }
+  //kalo susah yaudah statusnya masukin manual aja
 
   const query = `INSERT INTO tournaments (tournament_code, tournament_name, tournament_status, start_date, end_date) VALUES ('${code}', '${name}', '${status}', '${start_date}', '${end_date}');`
 
@@ -183,7 +182,7 @@ app.post('/InsertTournament', (req, res) => {
       console.error("Error executing query", err);
       return
     }
-    res.send("Tournament data inserted successfully.")
+    res.json(result.rows) //post will return the inserted rows as json, dunno if will work or not, and kinda unnecessary so just erase if not needed
   });
 });
 
