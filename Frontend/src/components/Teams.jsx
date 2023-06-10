@@ -12,11 +12,11 @@ const Teams = () => {
             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 {teams.map((team) => (
                     <a key={teams.id} href={team.href} className="group">
-                        <div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
+                        <div className={`flex-1 flex md:my-0 my-10 relative`}>
                             <img
                                 src={team.imageSrc}
                                 alt={team.imageAlt}
-                                className="w-[100%] h-[100%] relative z-[5] py-4"
+                                className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                             />
                             {/* gradient start */}
                             <div className="absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient" />

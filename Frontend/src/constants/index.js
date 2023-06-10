@@ -1,4 +1,4 @@
-import { M4, MDL, PP, MPL, Aamon, Miya, Balmond, Jawhead, Harith, RRQ, EVOS, AE, GPX, ECHO, ONIC, RSG, DEWA, } from "../assets";
+import { M4, MDL, PP, MPL, RRQ, EVOS, AE, GPX, ECHO, ONIC, RSG, DEWA, EVOS_Tazz, RRQ_Lemon, Undefined_Player } from "../assets";
 
 export const navLinks = [
   {
@@ -101,15 +101,60 @@ export const result = [
   },
 ];
 
-const players = [
+export const player_team1 = [
   {
     id: 1,
-    name: 'Basic Tee',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: '$35',
-    color: 'Black',
+    name: 'EVOS Tazz',
+    imageSrc: EVOS_Tazz,
+  },
+  {
+    id: 2,
+    name: 'EVOS Tazz',
+    imageSrc: EVOS_Tazz,
+  },
+  {
+    id: 3,
+    name: 'EVOS noy',
+    imageSrc: Undefined_Player,
+  },
+  {
+    id: 4,
+    name: 'EVOS Tazz',
+    imageSrc: EVOS_Tazz,
+  },
+  {
+    id: 5,
+    name: 'EVOS Tazz',
+    imageSrc: EVOS_Tazz,
+  },
+  // More products...
+]
+
+export const player_team2 = [
+  {
+    id: 1,
+    name: 'RRQ Lemon',
+    imageSrc: RRQ_Lemon,
+  },
+  {
+    id: 2,
+    name: 'RRQ Lemon',
+    imageSrc: RRQ_Lemon,
+  },
+  {
+    id: 3,
+    name: 'RRQ Lemon',
+    imageSrc: RRQ_Lemon,
+  },
+  {
+    id: 4,
+    name: 'RRQ Lemon',
+    imageSrc: RRQ_Lemon,
+  },
+  {
+    id: 5,
+    name: 'RRQ noy',
+    imageSrc: Undefined_Player,
   },
   // More products...
 ]

@@ -142,6 +142,9 @@ import ECHO from "./foto_team/logo_ECHO.png"
 import ONIC from "./foto_team/logo_ONIC.png"
 import RSG from "./foto_team/logo_RSG.png"
 import DEWA from "./foto_team/logo_Dewa_United.png"
+import EVOS_Tazz from "./foto_player/EVOS_Tazz.png"
+import RRQ_Lemon from "./foto_player/RRQ_Lemon.png"
+import Undefined_Player from "./foto_player/Undefined_Player.png"
 
 export{
   logo,
@@ -288,4 +291,7 @@ export{
   ECHO,
   ONIC,
   RSG,
+  EVOS_Tazz,
+  RRQ_Lemon,
+  Undefined_Player,
 };
