@@ -4,7 +4,7 @@ import { heroml2 } from "../assets";
 
 const Login = () => {
     const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [pass, setPass] = useState("");
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -14,11 +14,12 @@ const Login = () => {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ username, password }),
+              body: JSON.stringify({ username, pass }),
             });
             const data = await response.json();
             console.log(data);
             if (response.ok) {
+              sessionStorage.setItem("isLogin", true);
               alert("Logged in successfully");
               // Perform any additional actions after successful login
             } else {
@@ -80,7 +81,7 @@ const Login = () => {
                     </div>
                     <div className="font-poppins font-semibold text-white text-[15px] leading-[23.4px] mb-1">
                         <label htmlFor="password" className="block mb-2">Password</label>
-                        <input type="password" id="password" name="password" className="w-full px-3 py-2 border rounded-md" value={password} onChange={(event) => setPassword(event.target.value)} required />
+                        <input type="password" id="password" name="password" className="w-full px-3 py-2 border rounded-md" value={pass} onChange={(event) => setPass(event.target.value)} required />
                     </div>
                     <button type="submit" className="gap-x-10 font-poppins font-medium text-[18px] text-primary bg-blue-gradient px-4 py-2 rounded-md mt-2">Login</button>
                 </form>
