@@ -28,10 +28,10 @@ const Navbar = () => {
   }, []);
 
   const updatedNavLinks = isLogin
-    ? navLinks.map((nav) =>
-        nav.id === "login" ? { ...nav, title: "Log Out" } : nav
-      )
-    : navLinks;
+  ? navLinks.map((nav) =>
+      nav.id === "login" ? { ...nav, title: "Log Out" } : nav
+    )
+  : navLinks.filter((nav) => nav.id !== "DataManagement");
 
   const handleLogout = () => {
     sessionStorage.setItem("isLogin", "false");

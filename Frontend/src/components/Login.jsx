@@ -20,12 +20,13 @@ const Login = () => {
             console.log(data);
             if (response.ok) {
               sessionStorage.setItem("isLogin", true);
-              alert("Logged in successfully");
+              window.alert("Logged in successfully");
               // Perform any additional actions after successful login
             } else {
-              alert("Failed to login");
+              window.alert("Username or password is incorrect");
               // Handle the error scenario
             }
+            window.location.href = "/";
           } catch (error) {
             console.error("Error logging in:", error);
             // Handle the error scenario
