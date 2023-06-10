@@ -76,13 +76,13 @@ app.post("/RegisterAdmin", async (req, res) => {
 });
 
 app.post("/LoginAdmin", async (req, res) => {
-  const { username, pass } = req.body;
+  const { username, password } = req.body;
   
   db.query(
     `SELECT * FROM admin WHERE username = '${username}'`,
     async (err, result) => {
       if (result.rows.length === 0) {
-        window.alert("Username not found");
+        alert("Invalid username or password");
         return res.status(401).json({ error: "Invalid username or password" });
       }
       if (err) {
@@ -90,12 +90,12 @@ app.post("/LoginAdmin", async (req, res) => {
         return;
       }
       const storedData = result.rows[0];
-      bcrypt.compare(pass, storedData.pass, (err, isMatch) => {
+      bcrypt.compare(password, storedData.password_hash, (err, isMatch) => {
         if (err) {
           console.error("Error comparing password", err);
           return;
         }
-        if (!isMatch) {
+        if (isMatch) {
           return res.status(200).json({ message: "Login success" });
         } else {
           return res.status(401).json({ error: "Invalid username or password" });
