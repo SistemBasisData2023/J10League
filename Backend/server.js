@@ -32,20 +32,21 @@ db.connect((err) => {
 
 app.get("/upcomingMatches", (req, res) => {
   db.query(
-    `SELECT
-      t.tournament_id,
-      t.tournament_name,
-      t.scope,
-      u.match_id,
-      um.team_code_1,
-      um.team_code_2,
-      um.stage,
-      um.best_of,
-      TO_CHAR(u.match_date, 'dd-mm-yyyy') AS match_date
-    FROM
+    `SELECT 
+      t.tournament_code, 
+      t.tournament_name, 
+      t.scope, 
+      m.match_code, 
+      m.team_1_code, 
+      m.team_2_code, 
+      m.match_stage, 
+      m.round_count, 
+      m.match_date
+    FROM 
       tournaments t
-      JOIN upcoming u ON t.tournament_id = u.tournament_code
-      JOIN upcoming_matches um ON u.match_id = um.match_id;
+    JOIN 
+      match_info m ON t.tournament_code = m.tournament_code
+    WHERE m.match_status = 'Upcoming';
     `,
     (err, result) => {
       if (err) {

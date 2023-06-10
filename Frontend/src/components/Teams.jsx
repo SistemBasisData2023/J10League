@@ -1,9 +1,35 @@
 import * as assets from "../assets";
 import styles, { layout } from "../style";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Teams = () => {
     const [teams, setTeams] = useState([]);
+    const [selectedImages , setSelectedImages] = useState([]);
+
+    const handleInputChange = (event) => {
+        setSelectedImage(event.target.files[0]);
+      };
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append("image", file);
+    
+        try {
+          await axios.post("../assets/foto_team/", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+    
+          // Image uploaded successfully
+          console.log("Image uploaded successfully");
+        } catch (error) {
+          // Error uploading image
+          console.error("Error uploading image", error);
+        }
+      };
 
     useEffect(() => {
         fetch("http://localhost:3001/teams")
@@ -33,10 +59,15 @@ const Teams = () => {
                             {/* gradient end */}
                         </div>
                         <h3 className="text-center justify-center mt-1 text-lg font-poppins font-semibold text-white">{team.team_name}</h3>
-                        {/* <p className=" text-center justify-center mt-1 text-sm font-poppins font-semibold text-white">{team.teamInfo}</p> */}
                     </a>
                 ))}
             </div>
+            {sessionStorage.getItem('isLogin') && (
+                <div className="pt-12">
+                    <input type="file" onChange={handleInputChange} />
+                    <button onClick={handleImageUpload}>Upload</button>
+                </div>
+            )}
         </div>
     )
 }

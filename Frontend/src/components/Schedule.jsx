@@ -30,8 +30,7 @@ const FeatureCard = ({ props, index }) => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={assets[match.tournament_id]} alt="page-icon" />
-                        
+                        <img src={assets[match.tournament_code]} alt="page-icon" />
                       </div>
                     </div>
                     <div>
@@ -41,9 +40,9 @@ const FeatureCard = ({ props, index }) => {
                   </div>
                 </td>
                 <td>
-                  {match.team_code_1} vs {match.team_code_2}
+                  {match.team_1_code} vs {match.team_2_code}
                   <br />
-                  <span className="badge badge-ghost badge-sm"> {match.stage} - {match.best_of} </span>
+                  <span className="badge badge-ghost badge-sm"> {match.match_stage} - BEST OF {match.round_count} </span>
                 </td>
                 <td> {match.match_date} </td>
               </tr>
