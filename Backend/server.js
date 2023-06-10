@@ -242,6 +242,14 @@ app.post('/InsertMatch', (req, res) => {
     match_code = tournament_code + "_" + (++match_count)
   });
 
+  if(current_date < Date(String(match_date))){
+    status = "Upcoming"
+  } else if(current_date > Date(String(match_date))){
+    status = "Completed"
+  } else {
+    status = "Ongoing"
+  }
+
   //finally use all the available resource to create new record in match_info table
   const finalQuery = `INSERT INTO match_info (match_code, tournament_code, team_1_code, 
                           team_2_code, match_date, match_status, match_stage, round_count)
@@ -344,6 +352,30 @@ app.post('/InsertMatch', (req, res) => {
       return
   }
 });
+
+app.put('/UpdateRound', (req, res) => {
+  const round_code = req.body.round_code
+  const winner = req.body.winner
+  const score_1 = req.body.score_1
+  const score_2 = req.body.score_2
+  const duration = req.body.duration
+
+  const query = `
+                UPDATE round_detail
+                SET winner_code = '${winner}'
+                    team_1_score = '${score_1}'
+                    team_2_score = '${score_2}'
+                    duration = '${duration}
+                WHERE round_code = '${round_code}'`
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error executing query", err)
+      return
+    }
+    res.send("Round updated successfully.")
+  })
+})
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
