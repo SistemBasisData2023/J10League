@@ -18,6 +18,10 @@ export const navLinks = [
     title: "Teams",
   },
   {
+    id: "DataManagement",
+    title: "Data Management",
+  },
+  {
     id: "login",
     title: "Login",
   },

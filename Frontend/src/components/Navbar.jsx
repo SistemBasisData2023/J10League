@@ -7,6 +7,7 @@ const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,24 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const loginStatus = sessionStorage.getItem("isLogin");
+    setIsLogin(loginStatus === "true");
+  }, []);
+
+  const updatedNavLinks = isLogin
+    ? navLinks.map((nav) =>
+        nav.id === "login" ? { ...nav, title: "Log Out" } : nav
+      )
+    : navLinks;
+
+  const handleLogout = () => {
+    sessionStorage.setItem("isLogin", "false");
+    setIsLogin(false);
+    window.alert("You have been logged out!");
+    window.location.href = "/";
+   };
+
   return (
     <>
       <div className={`${style.paddingX} w-full flex justify-center ${style.nempelAtas} transition-colors duration-300 z-50 ${scrolled ? "bg-gray-800" : "bg-transparent"}`}>
@@ -29,16 +48,23 @@ const Navbar = () => {
             <img src={logo} alt="j10league" className="w-[px] h-[50px]" />
 
             <ul className="list-none sm:flex hidden justify-end items-center flex-1">
-              {navLinks.map((nav, index) => (
+              {updatedNavLinks.map((nav, index) => (
+                // START
                 <li
                   key={nav.id}
                   className={`font-poppins font-normal cursor-pointer text-[16px] ${
                     active === nav.title ? "text-white" : "text-dimWhite"
                   } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
-                  onClick={() => setActive(nav.title)}
+                  onClick={() => {
+                    setActive(nav.title);
+                    if (nav.id === "login" && isLogin){
+                      handleLogout();
+                    }
+                  }}
                 >
                   <a href={`/${nav.id}`}>{nav.title}</a>
                 </li>
+                // END
               ))}
             </ul>
 
@@ -62,7 +88,12 @@ const Navbar = () => {
                       className={`font-poppins font-medium cursor-pointer text-[16px] ${
                         active === nav.title ? "text-white" : "text-dimWhite"
                       } ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
-                      onClick={() => setActive(nav.title)}
+                      onClick={() => {
+                        setActive(nav.title);
+                        if (nav.id === "login" && isLogin){
+                          handleLogout();
+                        }
+                      }}
                     >
                       <a href={`/${nav.id}`}>{nav.title}</a>
                     </li>
