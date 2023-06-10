@@ -378,6 +378,20 @@ app.put('/UpdateRound', (req, res) => {
   })
 })
 
+app.delete("/matchInfo/:match_code", (req, res) => {
+  const match_code = req.params.match_code;
+
+  db.query("DELETE FROM match_info WHERE match_code = $1", [match_code])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.error("Error deleting match", error);
+      res.sendStatus(500);
+    });
+});
+
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

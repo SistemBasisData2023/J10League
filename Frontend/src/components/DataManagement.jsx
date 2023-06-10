@@ -2,6 +2,7 @@ import * as assets from "../assets";
 import styles, { layout } from "../style";
 import React, { useState, useEffect } from "react";
 import { result } from "../constants";
+import axios from "axios";
 
 const Upcoming = ({ props, index }) => {
     const [matches, setMatches] = useState([]);
@@ -12,6 +13,22 @@ const Upcoming = ({ props, index }) => {
             .then((data) => setMatches(data))
             .catch((error) => console.error("Error fetching data", error));
     }, []);
+
+    const handleDelete = (match_code) => {
+        axios
+          .delete(`http://localhost:3001/matchInfo/${match_code}`)
+          .then((response) => {
+            console.log("Match deleted successfully");
+            // Fetch updated data after deletion
+            fetch("http://localhost:3001/upcomingMatches")
+              .then((response) => response.json())
+              .then((data) => setMatches(data))
+              .catch((error) => console.error("Error fetching data", error));
+          })
+          .catch((error) => {
+            console.error("Error deleting match", error);
+          });
+      };
 
     return (
         <section>
@@ -36,7 +53,7 @@ const Upcoming = ({ props, index }) => {
                                         <div className="flex items-center space-x-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={assets[match.tournament_id]} alt="page-icon" />
+                                                    <img src={assets[match.tournament_code]} alt="page-icon" />
 
                                                 </div>
                                             </div>
@@ -53,12 +70,12 @@ const Upcoming = ({ props, index }) => {
                                     </td>
                                     <td> {match.match_date} </td>
                                     <td>
-                                        <div className="btn btn-ghost w-14 h-14">
+                                        <button className="btn btn-ghost w-14 h-14">
                                             <img src={assets['edit']} />
-                                        </div>
-                                        <div className="btn btn-ghost w-14 h-14">
+                                        </button>
+                                        <button className="btn btn-ghost w-14 h-14" onClick={() => handleDelete(match.match_code)}>
                                             <img src={assets['trash']} />
-                                        </div>
+                                        </button>
                                     </td>
                                 </tr>
                             );
@@ -110,12 +127,12 @@ const Results = ({ index }) => (
                                 </td>
                                 <td> {data.score} </td>
                                 <td>
-                                    <div className="btn btn-ghost w-14 h-14">
+                                    <button className="btn btn-ghost w-14 h-14">
                                         <img src={assets['edit']} />
-                                    </div>
-                                    <div className="btn btn-ghost w-14 h-14">
+                                    </button>
+                                    <button className="btn btn-ghost w-14 h-14">
                                         <img src={assets['trash']} />
-                                    </div>
+                                    </button>
                                 </td>
                             </tr>
                         );
