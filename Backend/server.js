@@ -58,14 +58,14 @@ app.get("/upcomingMatches", (req, res) => {
 });
 
 app.post("/RegisterAdmin", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, pass } = req.body;
 
   try {
     // Hash the password using bcrypt
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(pass, 10);
 
     // Insert the admin information into the database
-    const query = "INSERT INTO admin (username, password_hash) VALUES ($1, $2)";
+    const query = "INSERT INTO admin (username, pass) VALUES ($1, $2)";
     await db.query(query, [username, hashedPassword]);
 
     res.status(200).json({ message: "Admin registered successfully" });
