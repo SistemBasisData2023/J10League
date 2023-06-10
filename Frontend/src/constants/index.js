@@ -1,4 +1,22 @@
-import { M4, MDL, PP, MPL, RRQ, EVOS, AE, GPX, ECHO, ONIC, RSG, DEWA, EVOS_Tazz, RRQ_Lemon, Undefined_Player } from "../assets";
+import { M4, MDL, PP, MPL, AE,
+  AUR,
+  BTR,
+  CO2,
+  DEW,
+  DNS,
+  ECO,
+  EVO,
+  GPX,
+  GS,
+  KNG,
+  MBR,
+  ONI,
+  PAB,
+  PEN,
+  RBL,
+  RRQ,
+  RSG,
+  YAS, EVOS_Tazz, RRQ_Lemon, Undefined_Player } from "../assets";
 
 export const navLinks = [
   {
@@ -161,120 +179,4 @@ export const player_team2 = [
     imageSrc: Undefined_Player,
   },
   // More products...
-]
-
-export const teams = [
-  {
-    id: 1,
-    name: 'Rex Regum Qeon',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: RRQ,
-  },
-  {
-    id: 2,
-    name: 'EVOS Legends',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: EVOS,
-  },
-  {
-    id: 3,
-    name: 'Alter Ego',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: AE,
-  },
-  {
-    id: 4,
-    name: 'GPX',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: GPX,
-  },
-  {
-    id: 5,
-    name: 'ONIC Esports',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: ONIC,
-  },
-  {
-    id: 6,
-    name: 'RSG Singapore',
-    href: '#',
-    teamInfo: 'Singapore',
-    imageSrc: RSG,
-  },
-  {
-    id: 7,
-    name: 'Dewa United',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: DEWA,
-  },
-  {
-    id: 8,
-    name: 'ECHO',
-    href: '#',
-    teamInfo: 'Philippines',
-    imageSrc: ECHO,
-  },
-  {
-    id: 1,
-    name: 'Rex Regum Qeon',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: RRQ,
-  },
-  {
-    id: 2,
-    name: 'EVOS Legends',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: EVOS,
-  },
-  {
-    id: 3,
-    name: 'Alter Ego',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: AE,
-  },
-  {
-    id: 4,
-    name: 'GPX',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: GPX,
-  },
-  {
-    id: 5,
-    name: 'ONIC Esports',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: ONIC,
-  },
-  {
-    id: 6,
-    name: 'RSG Singapore',
-    href: '#',
-    teamInfo: 'Singapore',
-    imageSrc: RSG,
-  },
-  {
-    id: 7,
-    name: 'Dewa United',
-    href: '#',
-    teamInfo: 'Indonesia',
-    imageSrc: DEWA,
-  },
-  {
-    id: 8,
-    name: 'ECHO',
-    href: '#',
-    teamInfo: 'Philippines',
-    imageSrc: ECHO,
-  },
-  // More teams...
 ]

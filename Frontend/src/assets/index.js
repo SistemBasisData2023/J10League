@@ -134,14 +134,28 @@ import Yu_Zhong from "./foto_hero/Yu_Zhong.png"
 import Yve from "./foto_hero/Yve.png"
 import Zhask from "./foto_hero/Zhask.png"
 import Zilong from "./foto_hero/Zilong.png"
-import RRQ from "./foto_team/logo_RRQ.png"
-import EVOS from "./foto_team/logo_Evos.png"
-import GPX from "./foto_team/logo_GPX.png"
-import AE from "./foto_team/logo_Alter_Ego.png"
-import ECHO from "./foto_team/logo_ECHO.png"
-import ONIC from "./foto_team/logo_ONIC.png"
-import RSG from "./foto_team/logo_RSG.png"
-import DEWA from "./foto_team/logo_Dewa_United.png"
+
+import AE from "./foto_team/AE.png"
+import AUR from "./foto_team/AUR.png"
+import BTR from "./foto_team/BTR.png"
+import CO2 from "./foto_team/CO2.png"
+import DEW from "./foto_team/DEW.png"
+import DNS from "./foto_team/DNS.png"
+import ECO from "./foto_team/ECO.png"
+import EVO from "./foto_team/EVO.png"
+import GPX from "./foto_team/GPX.png"
+import GS from "./foto_team/GS.png"
+import KNG from "./foto_team/KNG.png"
+import MBR from "./foto_team/MBR.png"
+import ONI from "./foto_team/ONI.png"
+import OPI from "./foto_team/OPI.png"
+import PAB from "./foto_team/PAB.png"
+import PEN from "./foto_team/PEN.png"
+import RBL from "./foto_team/RBL.png"
+import RRQ from "./foto_team/RRQ.png"
+import RSG from "./foto_team/RSG.png"
+import YAS from "./foto_team/YAS.png"
+
 import EVOS_Tazz from "./foto_player/EVOS_Tazz.png"
 import RRQ_Lemon from "./foto_player/RRQ_Lemon.png"
 import Undefined_Player from "./foto_player/Undefined_Player.png"
@@ -283,14 +297,26 @@ export{
   Yve,
   Zhask,
   Zilong,
-  RRQ,
-  EVOS,
   AE,
+  AUR,
+  BTR,
+  CO2,
+  DEW,
+  DNS,
+  ECO,
+  EVO,
   GPX,
-  DEWA,
-  ECHO,
-  ONIC,
+  GS,
+  KNG,
+  MBR,
+  ONI,
+  OPI,
+  PAB,
+  PEN,
+  RBL,
+  RRQ,
   RSG,
+  YAS,
   EVOS_Tazz,
   RRQ_Lemon,
   Undefined_Player,

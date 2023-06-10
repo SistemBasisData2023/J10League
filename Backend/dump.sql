@@ -29,6 +29,26 @@ CREATE TABLE teams (
     team_name text UNIQUE NOT NULL
 );
 
+-- INSERT INTO teams (team_code, team_name) VALUES
+--     ('AE', 'Alter Ego'),
+--     ('AUR', 'AURA Fire'),
+--     ('BTR', 'Bigetron'),
+--     ('CO2', 'Co2Z Esports'),
+--     ('DEW', 'Dewa United Esports'),
+--     ('DNS', 'DNS Hammersonic Romeo'),
+--     ('EVO', 'EVOS Legends'),
+--     ('GS', 'Geek Slate'),
+--     ('GPX', 'GPX'),
+--     ('KNG', 'KINGS Esports'),
+--     ('MBR', 'MBR Delphyte'),
+--     ('ONI', 'ONIC Esports'),
+--     ('OPI', 'OPI Pegasus'),
+--     ('PAB', 'Pabz Esports'),
+--     ('PEN', 'Pendekar Esports'),
+--     ('RBL', 'Rebellion Zion'),
+--     ('RRQ', 'Rez Regum Qeon'),
+--     ('YAS', 'Yasbih Esports');
+
 CREATE TABLE team_info (
     team_code varchar(3) REFERENCES teams,
     member_code varchar(6) PRIMARY KEY,

@@ -105,6 +105,19 @@ app.post("/LoginAdmin", async (req, res) => {
   );
 });
 
+app.get("/teams", (req, res) => {
+  db.query(
+    `SELECT * FROM teams`,
+    (err, result) => {
+      if (err) {
+        console.error("Error executing query", err);
+        return;
+      }
+      res.json(result.rows);
+    }
+  );
+});
+
 app.post('/InsertTeam', (req, res) => {
   const code = req.body.code
   const name = req.body.name
