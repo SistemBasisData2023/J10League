@@ -134,6 +134,14 @@ import Yu_Zhong from "./foto_hero/Yu_Zhong.png"
 import Yve from "./foto_hero/Yve.png"
 import Zhask from "./foto_hero/Zhask.png"
 import Zilong from "./foto_hero/Zilong.png"
+import RRQ from "./foto_team/logo_RRQ.png"
+import EVOS from "./foto_team/logo_Evos.png"
+import GPX from "./foto_team/logo_GPX.png"
+import AE from "./foto_team/logo_Alter_Ego.png"
+import ECHO from "./foto_team/logo_ECHO.png"
+import ONIC from "./foto_team/logo_ONIC.png"
+import RSG from "./foto_team/logo_RSG.png"
+import DEWA from "./foto_team/logo_Dewa_United.png"
 
 export{
   logo,
@@ -271,5 +279,13 @@ export{
   Yu_Zhong,
   Yve,
   Zhask,
-  Zilong
+  Zilong,
+  RRQ,
+  EVOS,
+  AE,
+  GPX,
+  DEWA,
+  ECHO,
+  ONIC,
+  RSG,
 };

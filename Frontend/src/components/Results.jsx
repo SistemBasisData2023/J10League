@@ -56,7 +56,6 @@ const Result = () => (
                 </h1>
             </div>
         </div>
-
         <div className={`${layout.sectionImg} flex-col`}>
             <FeatureCard />
         </div>

@@ -1,4 +1,4 @@
-import { M4, MDL, PP, MPL, Aamon, Miya, Balmond, Jawhead, Harith } from "../assets";
+import { M4, MDL, PP, MPL, Aamon, Miya, Balmond, Jawhead, Harith, RRQ, EVOS, AE, GPX, ECHO, ONIC, RSG, DEWA, } from "../assets";
 
 export const navLinks = [
   {
@@ -176,3 +176,63 @@ export const details_team2 = [
     details: "",
   },
 ];
+
+export const teams = [
+  {
+    id: 1,
+    name: 'Rex Regum Qeon',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: RRQ,
+  },
+  {
+    id: 2,
+    name: 'EVOS Legends',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: EVOS,
+  },
+  {
+    id: 3,
+    name: 'Alter Ego',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: AE,
+  },
+  {
+    id: 4,
+    name: 'GPX',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: GPX,
+  },
+  {
+    id: 5,
+    name: 'ONIC Esports',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: ONIC,
+  },
+  {
+    id: 6,
+    name: 'RSG Singapore',
+    href: '#',
+    teamInfo: 'Singapore',
+    imageSrc: RSG,
+  },
+  {
+    id: 7,
+    name: 'Dewa United',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: DEWA,
+  },
+  {
+    id: 8,
+    name: 'ECHO',
+    href: '#',
+    teamInfo: 'Philippines',
+    imageSrc: ECHO,
+  },
+  // More teams...
+]
