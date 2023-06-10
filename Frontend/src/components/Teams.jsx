@@ -5,9 +5,9 @@ import { teams } from "../constants";
 
 const Teams = () => {
     return (
-        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-            <h1 className="font-poppins font-semibold text-gradient text-center justify-center ss:text-[75px] text-[50px] sm:py-10">
-                TEAMS
+        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-6xl lg:px-8">
+            <h1 className="font-poppins font-semibold text-white text-center justify-center ss:text-[75px] text-[65px] sm:py-14 py-6">
+                <span className="text-gradient">THE</span> TEAMS
             </h1>
             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 {teams.map((team) => (
@@ -16,7 +16,7 @@ const Teams = () => {
                             <img
                                 src={team.imageSrc}
                                 alt={team.imageAlt}
-                                className="w-[100%] h-[100%] relative z-[5]"
+                                className="w-[100%] h-[100%] relative z-[5] py-4"
                             />
                             {/* gradient start */}
                             <div className="absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient" />

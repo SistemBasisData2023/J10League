@@ -14,106 +14,117 @@ const Upcoming = ({ props, index }) => {
     }, []);
 
     return (
-        <div className={`overflow-x-auto mb-6 feature-card`}>
-            <span> Upcoming Matches </span>
+        <section>
+            <h1 className="font-poppins font-semibold text-white text-center justify-center ss:text-[40px] text-[30px]">
+                <span className="text-gradient"> Upcoming </span>
+                <span> Matches </span>{" "}
+            </h1>
+            <div className={`overflow-x-auto mb-6 feature-card`}>
+                <table className={`table ${styles.flexCenter}`}>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Teams</th>
+                            <th>Match Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {matches.map((match, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>
+                                        <div className="flex items-center space-x-3">
+                                            <div className="avatar">
+                                                <div className="mask mask-squircle w-12 h-12">
+                                                    <img src={assets[match.tournament_id]} alt="page-icon" />
+
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="font-bold"> {match.tournament_name} </div>
+                                                <div className="text-sm opacity-50"> {match.scope} </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {match.team_code_1} vs {match.team_code_2}
+                                        <br />
+                                        <span className="badge badge-ghost badge-sm"> {match.stage} - {match.best_of} </span>
+                                    </td>
+                                    <td> {match.match_date} </td>
+                                    <td>
+                                        <div className="btn btn-ghost w-14 h-14">
+                                            <img src={assets['edit']} />
+                                        </div>
+                                        <div className="btn btn-ghost w-14 h-14">
+                                            <img src={assets['trash']} />
+                                        </div>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    );
+};
+
+const Results = ({ index }) => (
+    <section>
+        <h1 className="font-poppins font-semibold text-white text-center justify-center ss:text-[40px] text-[30px]">
+            <span className="text-gradient"> Results </span>
+            <span> Matches </span>{" "}
+        </h1>
+        <div className={`overflow-x-auto ${index !== result.length - 1 ? "mb-6" : "mb-0"} feature-card`}>
             <table className={`table ${styles.flexCenter}`}>
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Teams</th>
-                        <th>Match Date</th>
+                        <th>Winner</th>
+                        <th>Score</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {matches.map((match, index) => {
+                    {result.map((data, index) => {
                         return (
                             <tr key={index}>
                                 <td>
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={assets[match.tournament_id]} alt="page-icon" />
-
+                                                <img src={data.icon} alt="page-icon" />
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold"> {match.tournament_name} </div>
-                                            <div className="text-sm opacity-50"> {match.scope} </div>
+                                            <div className="font-bold"> {data.title} </div>
+                                            <div className="text-sm opacity-50"> {data.content} </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    {match.team_code_1} vs {match.team_code_2}
+                                    {data.winners}
                                     <br />
-                                    <span className="badge badge-ghost badge-sm"> {match.stage} - {match.best_of} </span>
+                                    <span className="badge badge-ghost badge-sm"> {data.match_details} </span>
                                 </td>
-                                <td> {match.match_date} </td>
+                                <td> {data.score} </td>
                                 <td>
-                                <div className="btn btn-ghost w-14 h-14">
-                                <img src={assets['edit']} />
-                                </div>
-                                <div className="btn btn-ghost w-14 h-14">
-                                <img src={assets['trash']}/>
-                                </div>
-                            </td>
+                                    <div className="btn btn-ghost w-14 h-14">
+                                        <img src={assets['edit']} />
+                                    </div>
+                                    <div className="btn btn-ghost w-14 h-14">
+                                        <img src={assets['trash']} />
+                                    </div>
+                                </td>
                             </tr>
                         );
                     })}
                 </tbody>
             </table>
         </div>
-    );
-};
+    </section>
 
-const Results = ({ index }) => (
-    <div className={`overflow-x-auto ${index !== result.length - 1 ? "mb-6" : "mb-0"} feature-card`}>
-        <span> Results Matches </span>
-        <table className={`table ${styles.flexCenter}`}>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Winner</th>
-                    <th>Score</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {result.map((data, index) => {
-                    return (
-                        <tr key={index}>
-                            <td>
-                                <div className="flex items-center space-x-3">
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle w-12 h-12">
-                                            <img src={data.icon} alt="page-icon" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="font-bold"> {data.title} </div>
-                                        <div className="text-sm opacity-50"> {data.content} </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                {data.winners}
-                                <br />
-                                <span className="badge badge-ghost badge-sm"> {data.match_details} </span>
-                            </td>
-                            <td> {data.score} </td>
-                            <td>
-                                <div className="btn btn-ghost w-14 h-14">
-                                <img src={assets['edit']} />
-                                </div>
-                                <div className="btn btn-ghost w-14 h-14">
-                                <img src={assets['trash']}/>
-                                </div>
-                            </td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
-    </div>
 );
 
 const DataManagement = () => (

@@ -101,83 +101,76 @@ export const result = [
   },
 ];
 
-  export const details_team1 = [
-    {
-      id: "1",
-      hero: Aamon,
-      ign: "Noy",
-      kda: "15/11/3",
-      details: "",
-    },
-    {
-      id: "2",
-      hero: Miya,
-      ign: "arkadebrian",
-      kda: "1/15/2",
-      details: "",
-    },
-    {
-      id: "3",
-      hero: Balmond,
-      ign: "jepri.",
-      kda: "8/8/0",
-      details: "",
-    },
-    {
-      id: "4",
-      hero: Jawhead,
-      ign: "lemon",
-      kda: "11/4/2",
-      details: "",
-    },
-    {
-      id: "5",
-      hero: Harith,
-      ign: "EVOS botak",
-      kda: "16/2/9",
-      details: "",
-    },
-];
-
-export const details_team2 = [
+const players = [
   {
-    id: "1",
-    hero: Aamon,
-    ign: "Noy",
-    kda: "15/11/3",
-    details: "",
+    id: 1,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
   },
-  {
-    id: "2",
-    hero: Miya,
-    ign: "arkadebrian",
-    kda: "1/15/2",
-    details: "",
-  },
-  {
-    id: "3",
-    hero: Balmond,
-    ign: "jepri.",
-    kda: "8/8/0",
-    details: "",
-  },
-  {
-    id: "4",
-    hero: Jawhead,
-    ign: "lemon",
-    kda: "11/4/2",
-    details: "",
-  },
-  {
-    id: "5",
-    hero: Harith,
-    ign: "EVOS botak",
-    kda: "16/2/9",
-    details: "",
-  },
-];
+  // More products...
+]
 
 export const teams = [
+  {
+    id: 1,
+    name: 'Rex Regum Qeon',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: RRQ,
+  },
+  {
+    id: 2,
+    name: 'EVOS Legends',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: EVOS,
+  },
+  {
+    id: 3,
+    name: 'Alter Ego',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: AE,
+  },
+  {
+    id: 4,
+    name: 'GPX',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: GPX,
+  },
+  {
+    id: 5,
+    name: 'ONIC Esports',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: ONIC,
+  },
+  {
+    id: 6,
+    name: 'RSG Singapore',
+    href: '#',
+    teamInfo: 'Singapore',
+    imageSrc: RSG,
+  },
+  {
+    id: 7,
+    name: 'Dewa United',
+    href: '#',
+    teamInfo: 'Indonesia',
+    imageSrc: DEWA,
+  },
+  {
+    id: 8,
+    name: 'ECHO',
+    href: '#',
+    teamInfo: 'Philippines',
+    imageSrc: ECHO,
+  },
   {
     id: 1,
     name: 'Rex Regum Qeon',

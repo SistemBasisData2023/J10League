@@ -6,7 +6,7 @@ import MainPage from './MainPage';
 import LoginPage from './LoginPage';
 import TeamsPage from './TeamsPage';
 import MatchDetailsPage from './MatchDetailsPage';
-import AdminPage from './AdminPage'
+import DataManagementPage from './DataManagementPage'
 import ErrorPage from './404Page';
 import './index.css';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
@@ -16,7 +16,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index element={<MainPage />} />
       <Route path="home" element={<MainPage />} />
-      <Route path="datamanagement" element={<AdminPage />} />
+      <Route path="datamanagement" element={<DataManagementPage />} />
       <Route path="teams" element={<TeamsPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="matchdetails" element={<MatchDetailsPage />} />

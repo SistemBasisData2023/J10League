@@ -47,18 +47,18 @@ const FeatureCard = ({ index }) => (
 );
 
 const Result = () => (
-    <section id="result" className={layout.section}>
-        <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
-            <div className="flex flex-row justify-between items-center w-full">
-                <h1 className="flex-1 font-poppins font-semibold ss:text-[60px] text-[52px] text-white ss:leading-[100.8px] leading-[75px]">
-                    <span className="text-gradient"> Concluded </span> <br className="sm:block hidden" />{" "}
-                    <span> Matches </span>{" "}
-                </h1>
-            </div>
-        </div>
-        <div className={`${layout.sectionImg} flex-col`}>
-            <FeatureCard />
-        </div>
-    </section>
+    <section id="result" className="text-center justify-center">
+    <div className={`flex-1 sm:justify-end flex-col xl:px-0 sm:px-16 px-6`}>
+      <div className="flex flex-row justify-between items-center w-full">
+        <h1 className="flex-1 font-poppins font-semibold ss:text-[60px] text-[52px] text-white ss:leading-[100px] leading-[55px] sm:py-4 py-2">
+          <span className="text-gradient"> Concluded </span>
+          <span> Matches </span>{" "}
+        </h1>
+      </div>
+    </div>
+    <div className={`flex justify-center sm:px-16 px-6 sm:py-12 py-4`}>
+        <FeatureCard/>
+    </div>
+  </section>
 );
 export default Result;

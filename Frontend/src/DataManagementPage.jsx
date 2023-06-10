@@ -1,7 +1,7 @@
 import style from "./style";
 import { Navbar, DataManagement, Footer } from "./components";
 
-const LoginPage = () => {
+const DataManagementPage = () => {
     return (
         <div className="bg-primary w-full relative pt-9">
             <Navbar />
@@ -21,4 +21,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default DataManagementPage;
