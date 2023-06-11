@@ -6,6 +6,15 @@ import axios from "axios";
 const Upcoming = ({ props, index }) => {
     const [matches, setMatches] = useState([]);
 
+    const formatMatchDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+        const year = date.getFullYear().toString();
+    
+        return `${day}-${month}-${year}`;
+      };
+
     useEffect(() => {
         fetch("http://localhost:3001/upcomingMatches")
             .then((response) => response.json())
@@ -68,7 +77,7 @@ const Upcoming = ({ props, index }) => {
                                         <br />
                                         <span className="badge badge-ghost badge-sm"> {match.match_stage} - BEST OF {match.round_count} </span>
                                     </td>
-                                    <td> {match.match_date} </td>
+                                    <td> {formatMatchDate(match.match_date)} </td>
                                     <td>
                                         <button className="btn btn-ghost w-14 h-14">
                                             <img src={assets['edit']} />

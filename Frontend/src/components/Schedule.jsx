@@ -5,6 +5,15 @@ import React, { useState, useEffect } from "react";
 const FeatureCard = ({ props, index }) => {
   const [matches, setMatches] = useState([]);
 
+  const formatMatchDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear().toString();
+
+    return `${day}-${month}-${year}`;
+  };
+
   useEffect(() => {
     fetch("http://localhost:3001/upcomingMatches")
       .then((response) => response.json())
@@ -44,7 +53,7 @@ const FeatureCard = ({ props, index }) => {
                   <br />
                   <span className="badge badge-ghost badge-sm"> {match.match_stage} - BEST OF {match.round_count} </span>
                 </td>
-                <td> {match.match_date} </td>
+                <td> {formatMatchDate(match.match_date)} </td>
               </tr>
             );
           })}
