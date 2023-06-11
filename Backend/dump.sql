@@ -18,7 +18,7 @@ CREATE TYPE hero AS ENUM (
     'Wanwan', 'X.Borg', 'Xavier', 'Yi Sun-Shin', 'Yin', 'Yu Zhong', 'Yve', 'Zhask', 'Zilong'
 );
 
-CREATE TABLE admin (
+CREATE TABLE admin (    
     id serial PRIMARY KEY,
     username varchar(255) UNIQUE NOT NULL,
     pass char(64) NOT NULL
@@ -61,11 +61,5 @@ CREATE TABLE match_info (
     match_status status NOT NULL,
     match_stage text NOT NULL,
     round_count int NOT NULL,
-    first_round_code varchar(9) UNIQUE REFERENCES round_detail,
-    second_round_code varchar(9) UNIQUE REFERENCES round_detail,
-    third_round_code varchar(9) UNIQUE REFERENCES round_detail,
-    fourth_round_code varchar(9) UNIQUE REFERENCES round_detail,
-    fifth_round_code varchar(9) UNIQUE REFERENCES round_detail,
-    sixth_round_code varchar(9) UNIQUE REFERENCES round_detail,
-    seventh_round_code varchar(9) UNIQUE REFERENCES round_detail
+    round_code varchar(9) UNIQUE REFERENCES round_detail
 );

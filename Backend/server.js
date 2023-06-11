@@ -216,9 +216,7 @@ app.post('/InsertMatch', (req, res) => {
   const round_count = req.body.round_count
   let tournament_code = ""
   let match_count = 0
-  let round_code = []
-  const column_name = ["first_round_code", "second_round_code", "third_round_code",
-    "fourth_round_code", "fifth_round_code", "sixth_round_code", "seventh_round_code"]
+  let round_code = ""
 
   //first, get the tournament_code from tournaments table, needed for match_code generation
   const getTournamentQuery = `SELECT * FROM tournaments WHERE tournament_name = ${tournament_name};`
@@ -251,106 +249,22 @@ app.post('/InsertMatch', (req, res) => {
     status = "Ongoing"
   }
 
-  //finally use all the available resource to create new record in match_info table
-  const finalQuery = `INSERT INTO match_info (match_code, tournament_code, team_1_code, 
-                          team_2_code, match_date, match_status, match_stage, round_count)
-                      VALUES ('${match_code}', '${tournament_code}', '${team_1_code}', 
-                          '${team_2_code}', '${match_date}', '${status}', '${stage}', '${round_count}');`
+  //finally use all the available resource to create new record in round_detail and match_info tables
+  //round_detail table still empty, only having round_code in record as placeholder for further update
+  const finalQuery = `INSERT INTO round_detail (round_code) VALUES ('${round_code}');
+                      INSERT INTO match_info (match_code, tournament_code, team_1_code, team_2_code,
+                          match_date, match_status, match_stage, round_count, round_code)
+                      VALUES ('${match_code}', '${tournament_code}', '${team_1_code}', '${team_2_code}', 
+                          '${match_date}', '${status}', '${stage}', '${round_count}', '${round_code}');`
 
-  db.query(finalQuery, (err) => {
-    if (err) {
-      console.error("Error executing query", err);
-      return
-    }
-  });
-
-  //inserting round_code to round_detail
-  //and inserting round_code in match_info through update (previously NULL)
-  switch(round_count){
-    case 3:
-      for(let i = 3; i > 0; i--){
-        round_code[i-1] = match_code + "_" + i
+  for(let i = 1; i <= round_count; i++){
+    round_code = match_code + "_" + i
+    db.query(finalQuery, (err) => {
+      if (err) {
+        console.error("Error executing query", err);
+        return
       }
-      const roundQuery3 = `
-                          INSERT INTO round_detail (round_code)
-                          VALUES ('${round_code[0]}'),
-                                  ('${round_code[1]}'),
-                                  ('${round_code[2]}');
-                          UPDATE match_info
-                          SET ${column_name[0]} = '${round_code[0]}'
-                              ${column_name[1]} = '${round_code[1]}'
-                              ${column_name[2]} = '${round_code[2]}'
-                          WHERE match_code = '${match_code}';`
-
-      db.query(roundQuery3, (err) => {
-        if (err) {
-          console.error("Error executing query", err);
-          return
-        }
-        res.send("Match data inserted successfully.")
-      })
-      break
-    case 5:
-      for(let i = 5; i > 0; i--){
-        round_code[i-1] = match_code + "_" + i
-      }
-      const roundQuery5 = `
-                          INSERT INTO round_detail (round_code)
-                          VALUES ('${round_code[0]}'),
-                                  ('${round_code[1]}'),
-                                  ('${round_code[2]}'),
-                                  ('${round_code[3]}'),
-                                  ('${round_code[4]}');
-                          UPDATE match_info
-                          SET ${column_name[0]} = '${round_code[0]}'
-                              ${column_name[1]} = '${round_code[1]}'
-                              ${column_name[2]} = '${round_code[2]}'
-                              ${column_name[3]} = '${round_code[3]}'
-                              ${column_name[4]} = '${round_code[4]}'
-                          WHERE match_code = '${match_code}';`
-
-      db.query(roundQuery5, (err) => {
-        if (err) {
-          console.error("Error executing query", err);
-          return
-        }
-        res.send("Match data inserted successfully.")
-      })
-      break
-    case 7:
-      for(let i = 7; i > 0; i--){
-        round_code[i-1] = match_code + "_" + i
-      }
-      const roundQuery7 = `
-                          INSERT INTO round_detail (round_code)
-                          VALUES ('${round_code[0]}'),
-                                  ('${round_code[1]}'),
-                                  ('${round_code[2]}'),
-                                  ('${round_code[3]}'),
-                                  ('${round_code[4]}'),
-                                  ('${round_code[5]}'),
-                                  ('${round_code[6]}');
-                          UPDATE match_info
-                          SET ${column_name[0]} = '${round_code[0]}'
-                              ${column_name[1]} = '${round_code[1]}'
-                              ${column_name[2]} = '${round_code[2]}'
-                              ${column_name[3]} = '${round_code[3]}'
-                              ${column_name[4]} = '${round_code[4]}'
-                              ${column_name[5]} = '${round_code[5]}'
-                              ${column_name[6]} = '${round_code[6]}'
-                          WHERE match_code = '${match_code}';`
-
-      db.query(roundQuery7, (err) => {
-        if (err) {
-          console.error("Error executing query", err);
-          return
-        }
-        res.send("Match data inserted successfully.")
-      })
-      break
-    default:
-      console.error("Invalid round count");
-      return
+    });
   }
 });
 
@@ -390,7 +304,6 @@ app.delete("/matchInfo/:match_code", (req, res) => {
       res.sendStatus(500);
     });
 });
-
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
