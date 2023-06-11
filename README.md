@@ -120,7 +120,7 @@ To get started with TixOnline, follow these simple steps:
 
 ## Flowchart
 
-The flowchart provides a visual representation of the different stages involved in using RestoMatic, such as registration or login, menu exploration, item selection, order placement, balance management, and review submission. By following the flowchart, customers can seamlessly navigate through each stage and accomplish their desired tasks efficiently.
+The flowchart provides a visual representation of the different stages involved in using J10League, such as Schedule Matches, Results Matches, The Teams, and Data Management for Admin. By following the flowchart, customers can seamlessly navigate through each stage and accomplish their desired tasks efficiently.
 
 <details>
   <summary>Click Here</summary>
