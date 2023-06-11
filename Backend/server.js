@@ -58,6 +58,33 @@ app.get("/upcomingMatches", (req, res) => {
   );
 });
 
+app.get("/resultsMatches", (req, res) => {
+  db.query(
+    `SELECT 
+      t.tournament_code, 
+      t.tournament_name, 
+      t.scope, 
+      m.match_code, 
+      m.team_1_code, 
+      m.team_2_code,
+      r.team_1_score, 
+      r.team_2_score
+    FROM 
+      tournaments t
+    JOIN 
+      match_info m ON t.tournament_code = m.tournament_code
+    WHERE m.match_status = 'Completed';
+    `,
+    (err, result) => {
+      if (err) {
+        console.error("Error executing query", err);
+        return;
+      }
+      res.json(result.rows);
+    }
+  );
+});
+
 app.post("/RegisterAdmin", async (req, res) => {
   const { username, pass } = req.body;
 

@@ -74,7 +74,7 @@ const Login = () => {
                     </h1>
                 </div>
 
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleRegister}>
                 {/* <form onSubmit={handleRegister}> */}
                     <div className="font-poppins font-semibold text-white text-[15px] leading-[23.4px] mb-1">
                         <label htmlFor="username" className="block mb-2">Username</label>
