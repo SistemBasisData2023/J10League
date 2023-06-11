@@ -124,7 +124,7 @@ app.post('/InsertTeam', (req, res) => {
   const name = req.body.name
   db.query(
     `INSERT INTO teams VALUES ('${code}', '${name}');`,
-    (err, result) => {
+    (err) => {
       if (err) {
         console.error("Error executing query", err);
         return
@@ -143,9 +143,9 @@ app.post('/InsertTeamInfo', (req, res) => {
   let member_code = "";
 
   //first, get the team_code from teams table, needed for member_id generation
-  const getTeamQuery = `SELECT * FROM teams WHERE team_name = ${team_name};`
+  const getTeamQuery = `SELECT * FROM teams WHERE team_name = '${team_name}';`
   //next, count the existing member in a team, to decide the number on member_id
-  const memberCountQuery = `SELECT COUNT(member_code) FROM team_info WHERE team_code = ${team_code};`
+  const memberCountQuery = `SELECT COUNT(member_code) FROM team_info WHERE team_code = '${team_code}';`
 
   db.query(getTeamQuery, (err, result) => {
     if (err) {
@@ -168,12 +168,13 @@ app.post('/InsertTeamInfo', (req, res) => {
   //finally use all the available resource to create new record in team_info table
   const finalQuery = `INSERT INTO team_info VALUES ('${team_code}', '${member_code}', '${req.body.member_name}', '${req.body.member_role}');`
 
-  db.query(finalQuery, (err, result) => {
+  db.query(finalQuery, (err) => {
     if (err) {
       console.error("Error executing query", err);
       return
     }
-    res.send("Team member data inserted successfully.")
+    res.send("team_code: " + team_code + "; member_code: " + member_code)
+    //res.send("Team member data inserted successfully.")
   });
 });
 
@@ -184,11 +185,13 @@ app.post('/InsertTournament', (req, res) => {
   const start_date = req.body.start_date
   const end_date = req.body.end_date
   const current_date = new Date()
+  const start = new Date(start_date)
+  const end = new Date(end_date)
   
   //function buat check tanggal sekarang sama start date end date, buat nentuin status
-  if(current_date < Date(String(start_date))){
+  if(current_date < start){
     status = "Upcoming"
-  } else if(current_date > Date(String(end_date))){
+  } else if(current_date > end){
     status = "Completed"
   } else {
     status = "Ongoing"
@@ -196,7 +199,7 @@ app.post('/InsertTournament', (req, res) => {
 
   const query = `INSERT INTO tournaments VALUES ('${code}', '${name}', '${status}', '${start_date}', '${end_date}');`
 
-  db.query(query, (err, result) => {
+  db.query(query, (err) => {
     if (err) {
       console.error("Error executing query", err);
       return
@@ -215,8 +218,6 @@ app.post('/InsertMatch', (req, res) => {
   const stage = req.body.stage
   const round_count = req.body.round_count
   let tournament_code = ""
-  let match_count = 0
-  let round_code = ""
 
   //first, get the tournament_code from tournaments table, needed for match_code generation
   const getTournamentQuery = `SELECT * FROM tournaments WHERE tournament_name = ${tournament_name};`
@@ -251,44 +252,49 @@ app.post('/InsertMatch', (req, res) => {
 
   //finally use all the available resource to create new record in round_detail and match_info tables
   //round_detail table still empty, only having round_code in record as placeholder for further update
-  const finalQuery = `INSERT INTO round_detail (round_code) VALUES ('${round_code}');
-                      INSERT INTO match_info (match_code, tournament_code, team_1_code, team_2_code,
-                          match_date, match_status, match_stage, round_count, round_code)
+  const finalQuery = `INSERT INTO match_info (match_code, tournament_code, team_1_code, team_2_code,
+                          match_date, match_status, match_stage, round_count)
                       VALUES ('${match_code}', '${tournament_code}', '${team_1_code}', '${team_2_code}', 
-                          '${match_date}', '${status}', '${stage}', '${round_count}', '${round_code}');`
+                          '${match_date}', '${status}', '${stage}', '${round_count}');`
 
-  for(let i = 1; i <= round_count; i++){
-    round_code = match_code + "_" + i
-    db.query(finalQuery, (err) => {
-      if (err) {
-        console.error("Error executing query", err);
-        return
-      }
-    });
-  }
+  db.query(finalQuery, (err) => {
+    if (err) {
+      console.error("Error executing query", err);
+      return
+    }
+    res.send("Match inserted successfully.")
+  });
 });
 
-app.put('/UpdateRound', (req, res) => {
-  const round_code = req.body.round_code
+app.post('/InsertRound', (req, res) => {
+  let round_code = ""
+  const match_code = req.body.match_code
   const winner = req.body.winner
   const score_1 = req.body.score_1
   const score_2 = req.body.score_2
   const duration = req.body.duration
+  let round_count = 0
 
-  const query = `
-                UPDATE round_detail
-                SET winner_code = '${winner}'
-                    team_1_score = '${score_1}'
-                    team_2_score = '${score_2}'
-                    duration = '${duration}
-                WHERE round_code = '${round_code}'`
+  const getRoundCountQuery = `SELECT COUNT(round_code) FROM round_detail WHERE match_code = '${match_code}';`
 
-  db.query(query, (err, result) => {
+  db.query(getRoundCountQuery, (err, result) => {
     if (err) {
       console.error("Error executing query", err)
       return
     }
-    res.send("Round updated successfully.")
+    round_count = result.rows[0].count
+    round_code = match_code + "_" + (++round_count)
+  })
+
+  const finalQuery = `INSERT INTO round_detail VALUES ('${round_code}', '${match_code}',
+                          '${winner}', ${score_1}, ${score_2}, '${duration}');`
+
+  db.query(finalQuery, (err) => {
+    if (err) {
+      console.error("Error executing query", err)
+      return
+    }
+    res.send("Round inserted successfully.")
   })
 })
 
