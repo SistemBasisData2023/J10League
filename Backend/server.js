@@ -163,42 +163,39 @@ app.post('/InsertTeam', (req, res) => {
   );
 });
 
-//param: team_name, member_name, sama member_role
-//kayaknya harus pake async
-app.post('/InsertTeamInfo', (req, res) => {
-  const team_name = req.body.team_name
-  let team_code = "";
-  let member_count = 0;
-  let member_code = "";
-  //variabel-variabelnya keisi di scope 2 query yang select
-  //tapi pas dipake di query insert malah isinya blank
+//first, get the team_code from teams table, needed for member_id generation
+async function getTeamCode(req, res, next) {
+  const getTeamQuery = `SELECT * FROM teams WHERE team_name = '${req.body.team_name}';`
 
-  //first, get the team_code from teams table, needed for member_id generation
-  const getTeamQuery = `SELECT * FROM teams WHERE team_name = '${team_name}';`
-  //next, count the existing member in a team, to decide the number on member_id
-  const memberCountQuery = `SELECT COUNT(member_code) FROM team_info WHERE team_code = '${team_code}';`
-  //finally use all the available resource to create new record in team_info table
-  const finalQuery = `INSERT INTO team_info VALUES ('${team_code}', '${member_code}', '${req.body.member_name}', '${req.body.member_role}');`
+  let getTeamResult = await db.query(getTeamQuery)
+  if(getTeamResult.err){
+    console.error("Error executing query", getTeamResult.err);
+    return
+  }
+  req.team_code = getTeamResult.rows[0].team_code
 
-  db.query(getTeamQuery, (err, result) => {
-    if (err) {
-      console.error("Error executing query", err);
-      return
-    }
-    team_code = result.rows[0].team_code;
-  });
+  next()
+}
 
-  db.query(memberCountQuery, (err, result) => {
-    if (err) {
-      console.error("Error executing query", err);
-      return
-    }
-    member_count = result.rows[0].count;
-    //auto-generate member_id from team_code, concatenate with underscore(_) and (member_count + 1)
-    member_code = team_code + "_" + (++member_count)
-  });
+//next, count the existing member in a team, to decide the number on member_id
+async function getMemberCount(req, res, next) {
+  const memberCountQuery = `SELECT COUNT(member_code) FROM team_info WHERE team_code = '${req.team_code}';`
 
-  //tapi disini tetep kosong atau ""
+  let memberCountResult = await db.query(memberCountQuery)
+  if(memberCountResult.err){
+    console.error("Error executing query", memberCountResult.err);
+    return
+  }
+  let member_count = memberCountResult.rows[0].count
+  req.member_code = req.team_code + "_" + (++member_count)
+
+  next()
+}
+
+//finally use all the available resource to create new record in team_info table
+app.post('/InsertTeamInfo', getTeamCode, getMemberCount, async (req, res) => {
+  const finalQuery = `INSERT INTO team_info VALUES ('${req.team_code}', '${req.member_code}', '${req.body.member_name}', '${req.body.member_role}');`
+
   db.query(finalQuery, (err) => {
     if (err) {
       console.error("Error executing query", err);
@@ -238,44 +235,45 @@ app.post('/InsertTournament', (req, res) => {
   });
 });
 
-app.post('/InsertMatch', (req, res) => {
-  let match_code = ""
-  const tournament_name = req.body.tournament_name
-  const team_1_code = req.body.team_1_code
-  const team_2_code = req.body.team_2_code
-  const match_date = req.body.match_date
+//first, get the tournament_code from tournaments table, needed for match_code generation
+async function getTournamentCode(req, res, next) {
+  const getTournamentQuery = `SELECT * FROM tournaments WHERE tournament_name = ${req.body.tournament_name};`
+
+  let getTournamentResult = await db.query(getTournamentQuery)
+  if(getTournamentResult.err){
+    console.error("Error executing query", getTournamentResult.err);
+    return
+  }
+  req.tournament_code = getTournamentResult.rows[0].tournament_code
+
+  next()
+}
+
+//next, count the existing matches in a tournament, to decide the number on match_code
+async function getMatchCount(req, res, next) {
+  const matchCountQuery = `SELECT COUNT(member_code) FROM team_info WHERE team_code = '${req.tournament_code}';`
+
+  let matchCountResult = await db.query(matchCountQuery)
+  if(matchCountResult.err){
+    console.error("Error executing query", matchCountResult.err);
+    return
+  }
+  let match_count = matchCountResult.rows[0].count
+  req.match_code = req.tournament_code + "_" + (++match_count)
+
+  next()
+}
+
+//finally use all the available resource to create new record in match_info table
+app.post('/InsertMatch', getTournamentCode, getMatchCount, async(req, res) => {
   let status = ""
-  const stage = req.body.stage
-  const round_count = req.body.round_count
-  let tournament_code = ""
   const current_date = new Date()
-  const match = new Date(match_date)
+  const match = new Date(req.body.match_date)
 
-  //first, get the tournament_code from tournaments table, needed for match_code generation
-  const getTournamentQuery = `SELECT * FROM tournaments WHERE tournament_name = ${tournament_name};`
-  //next, count the existing matches in a tournament, to decide the number on match_code
-  const matchCountQuery = `SELECT COUNT(match_code) FROM match_info WHERE tournament_code = ${tournament_code};`
-  //finally use all the available resource to create new record in match_info table
-  const finalQuery = `INSERT INTO match_info VALUES ('${match_code}', '${tournament_code}', '${team_1_code}',
-                          '${team_2_code}', '${match_date}', '${status}', '${stage}', '${round_count}');`
-
-  db.query(getTournamentQuery, (err, result) => {
-    if (err) {
-      console.error("Error executing query", err);
-      return
-    }
-    tournament_code = result.rows[0].tournament_code;
-  });
-
-  db.query(matchCountQuery, (err, result) => {
-    if (err) {
-      console.error("Error executing query", err);
-      return
-    }
-    match_count = result.rows[0].count;
-    //auto-generate match_code from tournament_code, concatenate with underscore(_) and (match_count + 1)
-    match_code = tournament_code + "_" + (++match_count)
-  });
+  const finalQuery = `INSERT INTO match_info (match_code, tournament_code, team_1_code, team_2_code,
+                          match_date, match_status, match_stage, round_count)
+                      VALUES ('${req.match_code}', '${req.tournament_code}', '${req.body.team_1_code}', '${req.body.team_2_code}',
+                          '${req.body.match_date}', '${status}', '${req.stage}', '${req.round_count}');`
 
   if (current_date < match) {
     status = "Upcoming"
@@ -294,28 +292,23 @@ app.post('/InsertMatch', (req, res) => {
   });
 });
 
-app.post('/InsertRound', (req, res) => {
-  let round_code = ""
-  const match_code = req.body.match_code
-  const winner = req.body.winner
-  const score_1 = req.body.score_1
-  const score_2 = req.body.score_2
-  const duration = req.body.duration
-  let round_count = 0
-
+async function getRoundCount(req, res, next) {
   const getRoundCountQuery = `SELECT COUNT(round_code) FROM round_detail WHERE match_code = '${match_code}';`
 
-  db.query(getRoundCountQuery, (err, result) => {
-    if (err) {
-      console.error("Error executing query", err)
-      return
-    }
-    round_count = result.rows[0].count
-    round_code = match_code + "_" + (++round_count)
-  })
+  let roundCountResult = await db.query(getRoundCountQuery)
+  if(roundCountResult.err){
+    console.error("Error executing query", roundCountResult.err);
+    return
+  }
+  let round_count = roundCountResult.rows[0].count
+  req.round_code = req.body.match_code + "_" + (++round_count)
 
-  const finalQuery = `INSERT INTO round_detail VALUES ('${round_code}', '${match_code}',
-                          '${winner}', ${score_1}, ${score_2}, '${duration}');`
+  next()
+}
+
+app.post('/InsertRound', getRoundCount, async (req, res) => {
+  const finalQuery = `INSERT INTO round_detail VALUES ('${req.round_code}', '${req.body.match_code}',
+                          '${req.body.winner}', ${req.body.score_1}, ${req.body.score_2}, '${req.body.duration}');`
 
   db.query(finalQuery, (err) => {
     if (err) {
