@@ -135,17 +135,21 @@ app.post('/InsertTeam', (req, res) => {
 });
 
 //param: team_name, member_name, sama member_role
-//masih belom bisa, masalah di passing param yang varchar
+//kayaknya harus pake async
 app.post('/InsertTeamInfo', (req, res) => {
   const team_name = req.body.team_name
   let team_code = "";
   let member_count = 0;
   let member_code = "";
+  //variabel-variabelnya keisi di scope 2 query yang select
+  //tapi pas dipake di query insert malah isinya blank
 
   //first, get the team_code from teams table, needed for member_id generation
   const getTeamQuery = `SELECT * FROM teams WHERE team_name = '${team_name}';`
   //next, count the existing member in a team, to decide the number on member_id
   const memberCountQuery = `SELECT COUNT(member_code) FROM team_info WHERE team_code = '${team_code}';`
+  //finally use all the available resource to create new record in team_info table
+  const finalQuery = `INSERT INTO team_info VALUES ('${team_code}', '${member_code}', '${req.body.member_name}', '${req.body.member_role}');`
 
   db.query(getTeamQuery, (err, result) => {
     if (err) {
@@ -165,16 +169,13 @@ app.post('/InsertTeamInfo', (req, res) => {
     member_code = team_code + "_" + (++member_count)
   });
 
-  //finally use all the available resource to create new record in team_info table
-  const finalQuery = `INSERT INTO team_info VALUES ('${team_code}', '${member_code}', '${req.body.member_name}', '${req.body.member_role}');`
-
+  //tapi disini tetep kosong atau ""
   db.query(finalQuery, (err) => {
     if (err) {
       console.error("Error executing query", err);
       return
     }
-    res.send("team_code: " + team_code + "; member_code: " + member_code)
-    //res.send("Team member data inserted successfully.")
+    res.send("Team member data inserted successfully.")
   });
 });
 
@@ -223,6 +224,9 @@ app.post('/InsertMatch', (req, res) => {
   const getTournamentQuery = `SELECT * FROM tournaments WHERE tournament_name = ${tournament_name};`
   //next, count the existing matches in a tournament, to decide the number on match_code
   const matchCountQuery = `SELECT COUNT(match_code) FROM match_info WHERE tournament_code = ${tournament_code};`
+  //finally use all the available resource to create new record in match_info table
+  const finalQuery = `INSERT INTO match_info VALUES ('${match_code}', '${tournament_code}', '${team_1_code}',
+                          '${team_2_code}', '${match_date}', '${status}', '${stage}', '${round_count}');`
 
   db.query(getTournamentQuery, (err, result) => {
     if (err) {
@@ -249,13 +253,6 @@ app.post('/InsertMatch', (req, res) => {
   } else {
     status = "Ongoing"
   }
-
-  //finally use all the available resource to create new record in round_detail and match_info tables
-  //round_detail table still empty, only having round_code in record as placeholder for further update
-  const finalQuery = `INSERT INTO match_info (match_code, tournament_code, team_1_code, team_2_code,
-                          match_date, match_status, match_stage, round_count)
-                      VALUES ('${match_code}', '${tournament_code}', '${team_1_code}', '${team_2_code}', 
-                          '${match_date}', '${status}', '${stage}', '${round_count}');`
 
   db.query(finalQuery, (err) => {
     if (err) {
