@@ -327,7 +327,7 @@ app.post('/InsertRound', getRoundCount, async (req, res) => {
 })
 
 async function tournamentDateCompare(req, res, next) {
-  const tournamentDateQuery = `SELECT `
+  const tournamentDateQuery = `SELECT * FROM tournaments WHERE tournament_name = '${req.body.tournament_name}';`
 
   let tournamentDateResult = await db.query(tournamentDateQuery)
   if (tournamentDateResult.err) {
