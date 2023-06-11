@@ -125,7 +125,7 @@ The flowchart provides a visual representation of the different stages involved 
 <details>
   <summary>Click Here</summary>
   
-![Flowchart](assets/J10League_Flowchart.ppg)
+![Flowchart](Assets/J10League_Flowchart.png)
 
 </details>
 
@@ -134,7 +134,7 @@ The flowchart provides a visual representation of the different stages involved 
 <details>
   <summary>Click Here</summary>
 
-![UML_Diagram](assets/J10League_UML_Diagram.ppg)
+![UML_Diagram](Assets/J10League_UML_Diagram.png)
 
 </details>
 
@@ -143,6 +143,6 @@ The flowchart provides a visual representation of the different stages involved 
 <details>
   <summary>Click Here</summary>
 
-![ER_Diagram](assets/J10League_ER_Diagram.ppg)
+![ER_Diagram](Assets/J10League_ER_Diagram.png)
 
 </details>
