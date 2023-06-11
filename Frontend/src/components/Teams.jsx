@@ -62,12 +62,6 @@ const Teams = () => {
                     </a>
                 ))}
             </div>
-            {sessionStorage.getItem('isLogin') && (
-                <div className="pt-12">
-                    <input type="file" onChange={handleInputChange} />
-                    <button onClick={handleImageUpload}>Upload</button>
-                </div>
-            )}
         </div>
     )
 }

@@ -63,12 +63,14 @@ app.get("/resultsMatches", (req, res) => {
     `SELECT 
       t.tournament_code, 
       t.tournament_name, 
-      t.scope, 
+      t.tournament_status,
+      t.scope,  
       m.match_code, 
       m.team_1_code, 
       m.team_2_code,
-      r.team_1_score, 
-      r.team_2_score
+      m.match_winner,
+      m.team_1_score, 
+      m.team_2_score
     FROM 
       tournaments t
     JOIN 
@@ -105,7 +107,7 @@ app.post("/RegisterAdmin", async (req, res) => {
 
 app.post("/LoginAdmin", async (req, res) => {
   const { username, pass } = req.body;
-  
+
   db.query(
     `SELECT * FROM admin WHERE username = '${username}'`,
     async (err, result) => {
@@ -215,11 +217,11 @@ app.post('/InsertTournament', (req, res) => {
   const current_date = new Date()
   const start = new Date(start_date)
   const end = new Date(end_date)
-  
+
   //function buat check tanggal sekarang sama start date end date, buat nentuin status
-  if(current_date < start){
+  if (current_date < start) {
     status = "Upcoming"
-  } else if(current_date > end){
+  } else if (current_date > end) {
     status = "Completed"
   } else {
     status = "Ongoing"
@@ -275,9 +277,9 @@ app.post('/InsertMatch', (req, res) => {
     match_code = tournament_code + "_" + (++match_count)
   });
 
-  if(current_date < match){
+  if (current_date < match) {
     status = "Upcoming"
-  } else if(current_date > match){
+  } else if (current_date > match) {
     status = "Completed"
   } else {
     status = "Ongoing"

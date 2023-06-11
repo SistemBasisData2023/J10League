@@ -40,7 +40,7 @@ const FeatureCard = ({ props, index }) => {
                                     </div>
                                 </td>
                                 <td>
-                                    {match.winner_code}
+                                    {match.match_winner}
                                     <br />
                                     <span className="badge badge-ghost badge-sm"> {match.team_1_code} vs {match.team_2_code} </span>
                                 </td> 
