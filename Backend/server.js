@@ -329,15 +329,25 @@ app.post('/InsertRound', (req, res) => {
 app.delete("/matchInfo/:match_code", (req, res) => {
   const match_code = req.params.match_code;
 
-  db.query("DELETE FROM match_info WHERE match_code = $1", [match_code])
+  // Delete associated rows in round_detail table first
+  db.query("DELETE FROM round_detail WHERE match_code = $1", [match_code])
     .then(() => {
-      res.sendStatus(200);
+      // After successful deletion from round_detail, delete the row from match_info
+      db.query("DELETE FROM match_info WHERE match_code = $1", [match_code])
+        .then(() => {
+          res.sendStatus(200);
+        })
+        .catch((error) => {
+          console.error("Error deleting match", error);
+          res.sendStatus(500);
+        });
     })
     .catch((error) => {
-      console.error("Error deleting match", error);
+      console.error("Error deleting associated round details", error);
       res.sendStatus(500);
     });
 });
+
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

@@ -97,13 +97,13 @@ const Results = ({ props, index }) => {
             .catch((error) => console.error("Error fetching data", error));
     }, []);
 
-    const handleDelete = (match_code) => {
+    const handleDeleteResult = (match_code) => {
         axios
             .delete(`http://localhost:3001/matchInfo/${match_code}`)
             .then((response) => {
                 console.log("Match deleted successfully");
                 // Fetch updated data after deletion
-                fetch("http://localhost:3001/resultMatches")
+                fetch("http://localhost:3001/resultsMatches")
                     .then((response) => response.json())
                     .then((data) => setMatches(data))
                     .catch((error) => console.error("Error fetching data", error));
@@ -156,7 +156,7 @@ const Results = ({ props, index }) => {
                                         <button className="btn btn-ghost w-14 h-14">
                                             <img src={assets['edit']} />
                                         </button>
-                                        <button className="btn btn-ghost w-14 h-14" onClick={() => handleDelete(match.match_code)}>
+                                        <button className="btn btn-ghost w-14 h-14" onClick={() => handleDeleteResult(match.match_code)}>
                                             <img src={assets['trash']} />
                                         </button>
                                     </td>
