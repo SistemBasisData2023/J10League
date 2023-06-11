@@ -52,7 +52,10 @@ CREATE TABLE match_info (
     match_date date NOT NULL,
     match_status status NOT NULL,
     match_stage text NOT NULL,
-    round_count int NOT NULL
+    round_count int NOT NULL,
+    team_1_score int NULL,
+    team_2_score int NULL,
+    match_winner varchar(3) REFERENCES teams
 );
 
 CREATE TABLE round_detail (
