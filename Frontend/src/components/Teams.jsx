@@ -5,31 +5,31 @@ import axios from "axios";
 
 const Teams = () => {
     const [teams, setTeams] = useState([]);
-    const [selectedImages , setSelectedImages] = useState([]);
+    const [selectedImages, setSelectedImages] = useState([]);
 
     const handleInputChange = (event) => {
         setSelectedImage(event.target.files[0]);
-      };
+    };
 
     const handleImageUpload = async (event) => {
         const file = event.target.files[0];
         const formData = new FormData();
         formData.append("image", file);
-    
+
         try {
-          await axios.post("../assets/foto_team/", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
-    
-          // Image uploaded successfully
-          console.log("Image uploaded successfully");
+            await axios.post("../assets/foto_team/", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            // Image uploaded successfully
+            console.log("Image uploaded successfully");
         } catch (error) {
-          // Error uploading image
-          console.error("Error uploading image", error);
+            // Error uploading image
+            console.error("Error uploading image", error);
         }
-      };
+    };
 
     useEffect(() => {
         fetch("http://localhost:3001/teams")

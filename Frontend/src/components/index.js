@@ -4,6 +4,7 @@ import Results from "./Results";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Login from "./Login";
+import Register from "./Register";
 import Teams from './Teams';
 import MatchDetails from "./MatchDetails"
 import Error from "./Error"
@@ -18,6 +19,7 @@ export {
   Hero,
   Teams,
   Login,
+  Register,
   MatchDetails,
   Error,
   DataManagement,

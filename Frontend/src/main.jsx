@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import MainPage from './MainPage';
 import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 import TeamsPage from './TeamsPage';
 import MatchDetailsPage from './MatchDetailsPage';
 import DataManagementPage from './DataManagementPage'
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="datamanagement" element={<DataManagementPage />} />
       <Route path="teams" element={<TeamsPage />} />
       <Route path="login" element={<LoginPage />} />
+      <Route path="register" element={<RegisterPage />} />
       <Route path="matchdetails" element={<MatchDetailsPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Route>

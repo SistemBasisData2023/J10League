@@ -16,19 +16,19 @@ const Upcoming = ({ props, index }) => {
 
     const handleDelete = (match_code) => {
         axios
-          .delete(`http://localhost:3001/matchInfo/${match_code}`)
-          .then((response) => {
-            console.log("Match deleted successfully");
-            // Fetch updated data after deletion
-            fetch("http://localhost:3001/upcomingMatches")
-              .then((response) => response.json())
-              .then((data) => setMatches(data))
-              .catch((error) => console.error("Error fetching data", error));
-          })
-          .catch((error) => {
-            console.error("Error deleting match", error);
-          });
-      };
+            .delete(`http://localhost:3001/matchInfo/${match_code}`)
+            .then((response) => {
+                console.log("Match deleted successfully");
+                // Fetch updated data after deletion
+                fetch("http://localhost:3001/upcomingMatches")
+                    .then((response) => response.json())
+                    .then((data) => setMatches(data))
+                    .catch((error) => console.error("Error fetching data", error));
+            })
+            .catch((error) => {
+                console.error("Error deleting match", error);
+            });
+    };
 
     return (
         <section>
@@ -157,6 +157,9 @@ const DataManagement = () => (
         <div className={`${layout.sectionImg} flex-col`}>
             <Upcoming />
             <Results />
+            <a href= "/register" className={`btn py-4 px-6 font-poppins font-semibold text-[18px] text-primary bg-blue-gradient`}>
+                Register more Admin
+            </a>
         </div>
     </section>
 );
