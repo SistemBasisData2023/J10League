@@ -210,16 +210,16 @@ const Results = ({ props, index }) => {
 
     const handleUpdate = (match_code) => {
         axios
-            .put(`http://localhost:3001/updateUpcomingMatch/${match_code}`, {
-                team_1_code: team_1_code,
-                team_2_code: team_2_code,
-                match_date: match_date,
+            .put(`http://localhost:3001/updateResultsMatch/${match_code}`, {
+                match_winner: match_winner,
+                team_1_score: team_1_score,
+                team_2_score: team_2_score,
                 // match_date: moment(match_date).format('DD-MM-YYYY'),
             })
             .then((response) => {
                 console.log("Match updated successfully");
                 // Fetch updated data after update
-                fetch("http://localhost:3001/upcomingMatches")
+                fetch("http://localhost:3001/resultsMatches")
                     .then((response) => response.json())
                     .then((data) => setMatches(data))
                     .catch((error) => console.error("Error fetching data", error));

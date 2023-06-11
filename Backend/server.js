@@ -487,6 +487,27 @@ app.put("/updateUpcomingMatch/:match_code", (req, res) => {
   );
 });
 
+app.put("/updateResultsMatch/:match_code", (req, res) => {
+  const { match_winner, team_1_score, team_2_score } = req.body;
+  const { match_code } = req.params;
+  db.query(
+    `
+    UPDATE match_info
+    SET match_winner = '${match_winner}',
+      team_1_score = '${team_1_score}',
+      team_2_score = '${team_2_score}'
+    WHERE match_code = '${match_code}';
+    `,
+    (err) => {
+      if (err) {
+        console.error("Error executing query", err);
+        return;
+      }
+      res.send("Result match updated successfully.");
+    }
+  );
+});
+
 app.delete("/matchInfo/:match_code", (req, res) => {
   const match_code = req.params.match_code;
 
