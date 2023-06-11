@@ -466,6 +466,27 @@ app.put('/UpdateMatch', getMatchInfo, team1Score, team2Score, async (req, res) =
   }
 })
 
+app.put("/updateUpcomingMatch/:match_code", (req, res) => {
+  const { team_1_code, team_2_code, match_date } = req.body;
+  const { match_code } = req.params;
+  db.query(
+    `
+    UPDATE match_info
+    SET team_1_code = '${team_1_code}',
+        team_2_code = '${team_2_code}',
+        match_date = '${match_date}'
+    WHERE match_code = '${match_code}';
+    `,
+    (err) => {
+      if (err) {
+        console.error("Error executing query", err);
+        return;
+      }
+      res.send("Upcoming match updated successfully.");
+    }
+  );
+});
+
 app.delete("/matchInfo/:match_code", (req, res) => {
   const match_code = req.params.match_code;
 
