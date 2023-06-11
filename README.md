@@ -100,10 +100,10 @@ This table stores information regarding the details of the match results.
 
 To get started with TixOnline, follow these simple steps:
 
-1. Clone the repository: `git clone https://github.com/SistemBasisData2023/J10League`
+1. Clone the repository: `git clone https://github.com/SistemBasisData2023/J10League.git`
 2. Install dependencies: `npm install`
 3. Start the application: `npm start`
-4. Visit `http://localhost:3001` in your browser to access TixOnline.
+4. Visit `http://localhost:3001` in your browser to access J10League.
 
 ## Technologies Used
 
