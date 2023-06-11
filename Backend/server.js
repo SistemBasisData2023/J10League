@@ -237,7 +237,7 @@ app.post('/InsertTournament', (req, res) => {
 
 //first, get the tournament_code from tournaments table, needed for match_code generation
 async function getTournamentCode(req, res, next) {
-  const tournamentCodeQuery = `SELECT * FROM tournaments WHERE tournament_name = ${req.body.tournament_name};`
+  const tournamentCodeQuery = `SELECT * FROM tournaments WHERE tournament_name = '${req.body.tournament_name}';`
 
   let tournamentCodeResult = await db.query(tournamentCodeQuery)
   if (tournamentCodeResult.err) {
@@ -251,7 +251,7 @@ async function getTournamentCode(req, res, next) {
 
 //next, count the existing matches in a tournament, to decide the number on match_code
 async function getMatchCount(req, res, next) {
-  const matchCountQuery = `SELECT COUNT(member_code) FROM team_info WHERE team_code = '${req.tournament_code}';`
+  const matchCountQuery = `SELECT COUNT(match_code) FROM match_info WHERE tournament_code = '${req.tournament_code}';`
 
   let matchCountResult = await db.query(matchCountQuery)
   if (matchCountResult.err) {
@@ -270,11 +270,6 @@ app.post('/InsertMatch', getTournamentCode, getMatchCount, async(req, res) => {
   const current_date = new Date()
   const match = new Date(req.body.match_date)
 
-  const finalQuery = `INSERT INTO match_info (match_code, tournament_code, team_1_code, team_2_code,
-                          match_date, match_status, match_stage, round_count)
-                      VALUES ('${req.match_code}', '${req.tournament_code}', '${req.body.team_1_code}', '${req.body.team_2_code}',
-                          '${req.body.match_date}', '${status}', '${req.stage}', '${req.round_count}');`
-
   if (current_date < match) {
     status = "Upcoming"
   } else if (current_date > match) {
@@ -282,6 +277,11 @@ app.post('/InsertMatch', getTournamentCode, getMatchCount, async(req, res) => {
   } else {
     status = "Ongoing"
   }
+
+  const finalQuery = `INSERT INTO match_info (match_code, tournament_code, team_1_code, team_2_code,
+                          match_date, match_status, match_stage, round_count)
+                      VALUES ('${req.match_code}', '${req.tournament_code}', '${req.body.team_1_code}', '${req.body.team_2_code}',
+                          '${req.body.match_date}', '${status}', '${req.body.stage}', '${req.body.round_count}');`
 
   db.query(finalQuery, (err) => {
     if (err) {
@@ -293,7 +293,7 @@ app.post('/InsertMatch', getTournamentCode, getMatchCount, async(req, res) => {
 });
 
 async function getRoundCount(req, res, next) {
-  const roundCountQuery = `SELECT COUNT(round_code) FROM round_detail WHERE match_code = '${match_code}';`
+  const roundCountQuery = `SELECT COUNT(round_code) FROM round_detail WHERE match_code = '${req.body.match_code}';`
 
   let roundCountResult = await db.query(roundCountQuery)
   if (roundCountResult.err) {
@@ -319,14 +319,53 @@ app.post('/InsertRound', getRoundCount, async (req, res) => {
   })
 })
 
-async function getMatchDate(req, res, next) {
-  const matchDateQuery = `SELECT match_date FROM match_info WHERE match_code = '${req.body.match_code}';`
+async function tournamentDateCompare(req, res, next) {
+  const tournamentDateQuery = `SELECT `
+
+  let tournamentDateResult = await db.query(tournamentDateQuery)
+  if (tournamentDateResult.err) {
+    console.error("Error executing query", tournamentDateResult.err);
+    return
+  }
+  let current_date = new Date()
+  let start = new Date(tournamentDateResult.rows[0].start_date)
+  let end = new Date(tournamentDateResult.rows[0].end_date)
+
+  if (current_date < start) {
+    req.status = "Upcoming"
+  } else if (current_date > end) {
+    req.status = "Completed"
+  } else {
+    req.status = "Ongoing"
+  }
+
+  next()
+}
+
+app.put('/UpdateTournament', tournamentDateCompare, async (req, res) => {
+  const query = `UPDATE tournaments SET tournament_status = '${req.status}' 
+                  WHERE tournament_name = '${req.body.tournament_name}';`
+
+  db.query(query, (err) => {
+    if (err) {
+      console.error("Error executing query", err)
+      return
+    }
+    res.send("Tournament updated successfully.")
+  })
+})
+
+async function getMatchInfo(req, res, next) {
+  const matchDateQuery = `SELECT team_1_code, team_2_code, match_date
+                          FROM match_info WHERE match_code = '${req.body.match_code}';`
 
   let matchDateResult = await db.query(matchDateQuery)
   if (matchDateResult.err) {
     console.error("Error executing query", matchDateResult.err);
     return
   }
+  req.team_1_code = matchDateResult.rows[0].team_1_code
+  req.team_2_code = matchDateResult.rows[0].team_2_code
   req.match_date = matchDateResult.rows[0].match_date
 
   next()
@@ -335,7 +374,7 @@ async function getMatchDate(req, res, next) {
 async function team1Score(req, res, next) {
   const scoreCountQuery = `SELECT COUNT(round_code) FROM round_detail 
                             WHERE match_code = '${req.body.match_code} AND'
-                                winner_code = '${req.body.team_1_code}';`
+                                winner_code = '${req.team_1_code}';`
 
   let scoreCountResult = await db.query(scoreCountQuery)
   if (scoreCountResult.err) {
@@ -350,7 +389,7 @@ async function team1Score(req, res, next) {
 async function team2Score(req, res, next) {
   const scoreCountQuery = `SELECT COUNT(round_code) FROM round_detail 
                             WHERE match_code = '${req.body.match_code} AND'
-                                winner_code = '${req.body.team_2_code}';`
+                                winner_code = '${req.team_2_code}';`
 
   let scoreCountResult = await db.query(scoreCountQuery)
   if (scoreCountResult.err) {
@@ -362,7 +401,7 @@ async function team2Score(req, res, next) {
   next()
 }
 
-app.put('/UpdateMatch', getMatchDate, team1Score, team2Score, async (req, res) => {
+app.put('/UpdateMatch', getMatchInfo, team1Score, team2Score, async (req, res) => {
   let status = ""
   const current_date = new Date()
   const match = new Date(req.match_date)
@@ -383,9 +422,9 @@ app.put('/UpdateMatch', getMatchDate, team1Score, team2Score, async (req, res) =
     status = "Completed"
 
     if (req.team_1_score > req.team_2_score) {
-      req.match_winner = req.body.team_1_code
+      req.match_winner = req.team_1_code
     } else if (req.team_1_score < req.team_2_score) {
-      req.match_winner = req.body.team_2_code
+      req.match_winner = req.team_2_code
     } else {
       console.error("Error in match winner calculation: Both team have the same score.")
       return
@@ -441,7 +480,6 @@ app.delete("/matchInfo/:match_code", (req, res) => {
       res.sendStatus(500);
     });
 });
-
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
