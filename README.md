@@ -1,6 +1,6 @@
 <div align="center">
-  <h1 align="center">J10 League</h1>
-  <h2 align="center">Mobile Legends Tournament Monitoring Website</h1>
+  <img src="Assets/J10League_Logo.png" width="200" title="hover text">
+  <h1 align="center">Mobile Legends Tournament Monitoring Website 🎮</h1>
 </div>
 
 **Group J10**
