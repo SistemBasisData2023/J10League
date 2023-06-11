@@ -219,6 +219,8 @@ app.post('/InsertMatch', (req, res) => {
   const stage = req.body.stage
   const round_count = req.body.round_count
   let tournament_code = ""
+  const current_date = new Date()
+  const match = new Date(match_date)
 
   //first, get the tournament_code from tournaments table, needed for match_code generation
   const getTournamentQuery = `SELECT * FROM tournaments WHERE tournament_name = ${tournament_name};`
@@ -246,9 +248,9 @@ app.post('/InsertMatch', (req, res) => {
     match_code = tournament_code + "_" + (++match_count)
   });
 
-  if(current_date < Date(String(match_date))){
+  if(current_date < match){
     status = "Upcoming"
-  } else if(current_date > Date(String(match_date))){
+  } else if(current_date > match){
     status = "Completed"
   } else {
     status = "Ongoing"
