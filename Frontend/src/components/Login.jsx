@@ -33,30 +33,6 @@ const Login = () => {
           }
     };
 
-    const handleRegister = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await fetch("http://localhost:3001/RegisterAdmin", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ username, password }),
-            });
-      
-            if (response.ok) {
-                alert("Admin registered successfully");
-                window.location.reload(false);
-            } else {
-                alert("Failed to register admin");
-              // Handle the error scenario
-            }
-          } catch (error) {
-            console.error("Error registering admin:", error);
-            // Handle the error scenario
-          }
-    };
-    
     return (
         <section id="login" className={`flex md:flex-row flex-col ${styles.paddingX} pt-12`}>
             <div className={`flex-1 flex ${styles.marginX} md:my-0 my-10 relative`}>

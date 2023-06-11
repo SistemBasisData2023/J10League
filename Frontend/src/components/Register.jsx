@@ -6,33 +6,6 @@ const Register = () => {
     const [username, setUsername] = useState("");
     const [pass, setPass] = useState("");
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await fetch("http://localhost:3001/LoginAdmin", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ username, pass }),
-            });
-            const data = await response.json();
-            console.log(data);
-            if (response.ok) {
-                sessionStorage.setItem("isLogin", true);
-                window.alert("Logged in successfully");
-                // Perform any additional actions after successful login
-            } else {
-                window.alert("Username or password is incorrect");
-                // Handle the error scenario
-            }
-            window.location.href = "/";
-        } catch (error) {
-            console.error("Error logging in:", error);
-            // Handle the error scenario
-        }
-    };
-
     const handleRegister = async (event) => {
         event.preventDefault();
         try {
@@ -41,7 +14,7 @@ const Register = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ username, pass }),
             });
 
             if (response.ok) {
@@ -51,6 +24,7 @@ const Register = () => {
                 alert("Failed to register admin");
                 // Handle the error scenario
             }
+            window.location.href = "/";
         } catch (error) {
             console.error("Error registering admin:", error);
             // Handle the error scenario
