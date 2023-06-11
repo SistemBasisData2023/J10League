@@ -9,29 +9,29 @@
 + [Jeffri](https://github.com/JeffriUI) - 2106705070
 
 ## Introduction
-J10 League is a useful website for monitoring game tournaments, namely Mobile Legends. In it there will be a playing schedule of the teams that will compete, then there is a recap of the results of the matches of the teams that have competed which are filled with the results of the match winners, team profiles, their members, and so on. In addition, there will be a feature for admin logins so they can edit data on the website.
+J10 League is a useful website for monitoring game tournaments, namely Mobile Legends. In it there will be a playing schedule of the teams that will compete, then there is a recap of the results of the matches of the teams that have competed which are filled with the results of the match winners, team profiles, and their the members. In addition, there is page stores information about all of the team from Indonesia include their logo. The Last, there will be a feature for admin logins so they can edit data on the website.
 
 ## Features
 
 #### `Schedule Matches`
 
-Enjoy personalized features by creating an account and logging in. TixOnline allows users to manage their profile, track booking history, and receive tailored recommendations. With secure authentication mechanisms in place, your personal information and account details are safe.
+The Schedule Matches feature in J10 League provides a comprehensive overview of the upcoming game tournaments for Mobile Legends. It includes information such as the tournaments, teams, and date of each match. Users can refer to this schedule to stay updated on the upcoming matches and plan their viewing accordingly.
 
 #### `Results Matches`
 
-Discover an extensive collection of movies through TixOnline's intuitive interface. Explore detailed information about each movie, including plot summaries, genres, and ratings. Get a comprehensive overview and make informed choices about your movie selections.
+The Results Matches feature allows users to access the latest information and outcomes of the matches that have taken place in the Mobile Legends tournaments. It provides detailed match summaries, including the winners, scores, and players who played. Users can review the results to stay informed about the performance of different teams and players.
 
 #### `The Teams`
 
-TixOnline simplifies the ticket booking process, allowing users to effortlessly select their preferred movie, showtime, and seats. With a streamlined interface, you can confidently proceed to book tickets securely. The application ensures that seats are not double-booked, providing a hassle-free experience.
+The Teams feature provides a dedicated section where users can explore detailed profiles of the participating teams in the tournament of J10 League.
 
 #### `Data Management for Admin`
 
-Easily access your past bookings with TixOnline's booking history feature. Stay organized by reviewing your previous movie choices, showtimes, and the seats you booked. Keep track of your cinema experiences and plan future outings with ease.
+The Data Management for Admin feature is designed specifically for website administrators. It offers a secure login system that grants authorized access to administrators. Once logged in, administrators can efficiently manage and update the data on the J10 League website.
 
 ## Tables
 
-The following are tables used in the TixOnline's database.
+The following are tables used in the J10League's database.
 
 ### 1. `admin`
 
@@ -98,7 +98,7 @@ This table stores information regarding the details of the match results.
 
 ## Getting Started
 
-To get started with TixOnline, follow these simple steps:
+To get started with J10League, follow these simple steps:
 
 1. Clone the repository: `git clone https://github.com/SistemBasisData2023/J10League.git`
 2. Install dependencies: `npm install`
