@@ -125,7 +125,7 @@ The flowchart provides a visual representation of the different stages involved 
 <details>
   <summary>Click Here</summary>
   
-![TixOnline Flowchart](https://github.com/SistemBasisData2023/TixOnline)
+![Flowchart](assets/J10League_Flowchart.ppg)
 
 </details>
 
@@ -134,7 +134,7 @@ The flowchart provides a visual representation of the different stages involved 
 <details>
   <summary>Click Here</summary>
 
-![TixOnline UML Diagram](https://github.com/SistemBasisData2023/TixOnline)
+![UML_Diagram](assets/J10League_UML_Diagram.ppg)
 
 </details>
 
@@ -143,6 +143,6 @@ The flowchart provides a visual representation of the different stages involved 
 <details>
   <summary>Click Here</summary>
 
-![TixOnline ERD](https://github.com/SistemBasisData2023/TixOnline)
+![ER_Diagram](assets/J10League_ER_Diagram.ppg)
 
 </details>
